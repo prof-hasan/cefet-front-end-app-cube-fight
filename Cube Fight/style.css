@@ -1,0 +1,36 @@
+#menu-inicial-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    min-height: 100vh;
+    grid-template-areas: 
+        "header header header header"
+        "leaderboard selecao-1 selecao-2 anuncios"
+        "footer footer footer footer"
+        ;
+}
+
+#player-1 {
+    grid-area: selecao-1;
+}
+
+#player-2 {
+    grid-area: selecao-2;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    font-size: 1.7em;
+    text-align: center;
+    grid-area: header;
+}
+
+.selecao {
+    color: white;
+    font-size: 2.4em;
+    text-align: center;
+    background-color: black;
+    margin: 0 10px;
+}
+
