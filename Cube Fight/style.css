@@ -1,3 +1,10 @@
+
+body {
+    background-image: url("../imgs/pordosol.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 #menu-inicial-container {
     display: grid;
     grid-template-columns: 1fr 3fr 3fr 1fr;
@@ -26,11 +33,112 @@ header {
     grid-area: header;
 }
 
+header h1 {
+    color: #ffd700;
+}
+
 .selecao {
-    color: white;
+    position: relative;
+    color: #fff8dc;
     font-size: 2.4em;
     text-align: center;
-    background-color: black;
+    background-color: #2b1d1d;
     margin: 0 10px;
+    border: 3px solid #ffb347;
+    border-radius: 20px;
+}
+
+.selecao input {
+    border: 1px solid #ffab3d;
+    border-radius: 100px;
+    padding: 6px;
+    background: none;
+    font-size: 0.7em;
+    color: white;
+}
+
+.cubo-img-menu {
+    margin-top: 30%;
+    width: 46%;
+}
+
+.roupa-mago {
+    width: 46%;
+    top: 74%;
+    right: 27%;
+}
+
+.acessorio {
+    position: absolute;
+    /*display: none;*/
+}
+
+.chapeu-mago {
+    right: 29%;
+    width: 43%;
+    top: 27%;
+}
+
+.cara-feliz {
+    right: 29%;
+    top: 56%;
+    width: 41%;
+}
+
+.habilitar-acessorio {
+    display: block;
+}
+
+.botao-acessorio {
+    border: none;
+    background: none;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20%;
+    height: 10%;
+    transition: all 0.09s ease;
+}
+
+.passar {
+    background-image: url("../imgs/seta-amarela-direita.png");
+}
+
+.voltar {
+    background-image: url("../imgs/seta-amarela-esquerda.png");
+}
+
+.botao-acessorio:hover {
+    transform: scale(1.1);
+}
+
+.botao-roupa.passar {
+    top: 76%;
+    right: 7%;
+}
+
+.botao-roupa.voltar {
+    top: 76%;
+    right: 78%;
+}
+
+.botao-chapeu.passar {
+    top: 41%;
+    right: 7%;
+}
+
+.botao-chapeu.voltar {
+    top: 41%;
+    right: 77%;
+}
+
+.botao-cara.passar {
+    top: 61%;
+    right: 7%;
+}
+
+.botao-cara.voltar {
+    top: 60%;
+    right: 78%;
 }
 
