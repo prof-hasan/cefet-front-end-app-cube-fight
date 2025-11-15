@@ -1,0 +1,24 @@
+Proposta:
+
+- Pular, andar e atacar será possível.
+
+-jogo pvp 1 vs 1 local de plataforma
+
+- Os jogadores seriam cubos passíveis de personalização antes da partida (roupa, chapéu, rosto e arma inicial)
+
+- a personalização daria vantagens específicas ao jogador.
+
+- o combate será simples. Caso um jogador esteja perto o suficiente e o jogador atacante ataque apertando uma tecla específica, o jogador defensor será arremessado a uma distância específica para a direção contrária.
+
+
+- O objetivo do jogo é jogar o adversário para fora da plataforma principal
+
+- Teriam variedades de mapa para a escolha do usuário antes do início da partida. 
+
+- armas spawnariam de forma aleatória no mapa em posições aleatórias.
+
+- o jogo terá um sistema de colisões entre os jogadores e as plataformas.
+
+- O jogo terá um sistema de gravidade no qual jogadores e armas cairão caso não estejam tocando em nada.
+
+- existirão plataformas aéreas que facilitarão a locomoção do jogo.
