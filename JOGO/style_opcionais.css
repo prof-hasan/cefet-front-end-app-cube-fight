@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+html {
+    background-image: url(imgs/fundoMenu.png);
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    height: 100%;
+    color: white;
+    font-family: "Jersey 10", sans-serif;
+    padding: 0%;
+    margin: 0%;
+}
+
+body {
+    padding: 0%;
+    margin: 0%;
+}
+
+header {
+    margin: 0 0;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    background-color: rgb(14, 14, 36);
+}
+
+h1 {
+    margin: 0%;
+    font-size: 3.5vw;
+    text-align: center;
+    color: rgb(21, 158, 236);
+}
+
+section h2 {
+    text-align: center;
+    color: yellowgreen;
+    margin-top: 10%;
+    font-size: 3.5vw;
+    padding: 0;
+}
+
+#colaboradores {
+    padding: 0;
+}
+
+#colaboradores article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2.0em;
+    padding-top: 5%;
+}
+
+#colaboradores div {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+
+ul {
+    list-style-type: square;
+    padding-top: 5%;
+}
+ 
+li::marker {
+    color: rgb(21, 158, 236);
+}
+
+#itens-opcionais {
+    display: flex;
+    flex-direction: column;
+}
+
+#itens-opcionais div {
+    display: flex;
+    justify-content: space-around;
+    gap: 5%;
+    align-items: center;
+}
+
+#itens-opcionais div h2 {
+    font-size: 2.0em;
+    width: 170px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    color: rgb(21, 158, 236);
+} 
+
+#itens-opcionais article {
+    font-size: 1.2em;
+}
+
+footer {
+    background-color: rgb(14, 14, 36);
+    margin-top: 10%;
+    height: 15vh;
+    font-family: sans-serif;
+    padding: 1% 0 0 1%;
+}
+
+.efeito-titulo-section, .efeito-img-colaboradores, .efeito-nome-colaboradores,
+.efeito-opcional-1, .efeito-opcional-2, .efeito-opcional-3 {
+    visibility: hidden;
+}
