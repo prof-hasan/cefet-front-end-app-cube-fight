@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
 //ajuste do tamanho do espaço do jogo (parte jogável)
-canvas.width = 1920; //1600 //
-canvas.height = 1080; //900
+canvas.width = 1920; 
+canvas.height = 1080;
 
 //carregando informações do menu
 let player1 = JSON.parse(localStorage.getItem("player1"));
@@ -19,26 +19,6 @@ let tempoDeJogoMs = 0; // tempo decorrido em milissegundos
 
 let jaExisteVencedor = 0 //variável que define apenas um vencedor por partida
 let jaAlteradoRanking = 0;
-
-//provisorio enquanto nao deploya
-// let player1 = {    jogadores[j].ataqueBase += pesos[arrayDosPlayers[j].chapeu]
-//     chapeu: 'rei',
-//     rosto: 'bravo',
-//     roupa: 'mago',
-//     arma: 'marreta',
-//     nome: 'robertson'
-// }
-// let player2 = {
-//     chapeu: 'cowboy',
-//     rosto: 'feliz',
-//     roupa: 'paleto',
-//     arma: 'lanca',
-//     nome: '13k'
-// }
-
-
-console.log("Jogador 1 escolheu:", player1.chapeu, player1.rosto, player1.roupa, player1.arma);
-console.log("Jogador 2 escolheu:", player2.chapeu, player2.rosto, player2.roupa, player2.arma);
 
 class Jogador {
     constructor({ x, y, orientacao, cor, arma, imagens, jogador, numero }) { //propriedades do jogador
@@ -65,7 +45,7 @@ class Jogador {
         this.pisadaBase = 23;
         this.dashBase = 20;
         this.dashCooldown = 500; // tempo em ms
-        this.ataqueBase = 30; //35
+        this.ataqueBase = 30;
         this.alcanceBase = 35;
         this.alcanceVerticalBase = 5;
         this.ataqueCooldown = 400;
@@ -103,11 +83,11 @@ class Jogador {
 
         this.tomandoDano = false;
         this.estaAtacando = false;
-        this.ataqueStartTime = 0; // em ms (performance.now)
+        this.ataqueStartTime = 0; // em ms
         this.ataqueDuracao = 200; // duração do swing em ms
         this.ataqueAnguloInicio = 0; // rad
         this.ataqueAnguloFinal = 0; // rad
-        // pivot dentro da imagem da arma (px) - aproximado
+
         this.armaPivot = { x: 12, yFromBottom: 8 };
 
         // estocada (lança / luva) - translacao pra frente e volta
@@ -122,6 +102,7 @@ class Jogador {
         if (this.estaAtacando) return;
         this.estaAtacando = true;
         this.ataqueStartTime = performance.now();
+
         // definir ângulos dependendo da orientação (em radianos)
         // para direita: começa alto à esquerda e vai para baixo à direita
         let rightStart = -Math.PI / 2; //angulo de inicio
@@ -139,6 +120,7 @@ class Jogador {
 
     iniciarEstocada() {
         if (this.estaEstocando) return;
+
         // cancelar ataque rotacional caso esteja acontecendo
         this.estaAtacando = false;
         this.estaEstocando = true;
@@ -147,7 +129,7 @@ class Jogador {
     }
 
     escreverNameTag() {
-        if (this.nome == 'pietro' || this.nome == '13k' || this.nome == 'rafael') {
+        if (this.nome == 'pietro' || this.nome == '13k' || this.nome == 'rafael') { //efeito especial pra nós 3
             c.save();
 
             // avança o arco-íris
@@ -200,8 +182,7 @@ class Jogador {
         let outroJogador = jogadores[0];
         if(this == outroJogador) outroJogador = jogadores[1];
 
-        if (this.orientacao == 'esquerda') {
-            // flipado
+        if (this.orientacao == 'esquerda') { // desenha tudo flipado
             c.save();
             c.scale(-1, 1);
 
@@ -226,7 +207,7 @@ class Jogador {
             c.drawImage(this.imagens.roupa, -this.position.x - this.imagens.roupa.width + 2, this.position.y + this.height - this.imagens.roupa.height, this.imagens.roupa.width, this.imagens.roupa.height); //desenhando roupa
 
             // desenhando arma (rotacionada se atacando, estocada translacional)
-            if (this.estaAtacando) {
+            if (this.estaAtacando) { //ataque de espada/marreta
                 // coords usados originalmente para drawImage na versão flipada
                 const imgX = -this.position.x - 2 * this.width / 8;
                 const imgY = this.position.y + 7 * this.height / 8 - this.imagens.arma.height;
@@ -250,7 +231,7 @@ class Jogador {
                 c.rotate(angle);
                 c.drawImage(this.imagens.arma, -pivotImgX, -pivotImgY, this.imagens.arma.width, this.imagens.arma.height);
                 c.restore();
-            } else if (this.estaEstocando) {
+            } else if (this.estaEstocando) { //ataque de luvas/lança
                 let imgX = -this.position.x - 2 * this.width / 8;
                 let imgY = this.position.y + 7 * this.height / 8 - this.imagens.arma.height;
 
@@ -267,39 +248,37 @@ class Jogador {
                     this.estaEstocando = false;
                     t = 1;
                 }
-                // timeline: recuo curto (prePct) -> empurrão até o pico
+
                 const prePct = 0.2;
                 const back = this.estocadaRecua || Math.max(8, Math.round(this.estocadaDistancia * 0.2));
                 let baseDisp = 0;
                 if (t < prePct) {
                     const p = t / prePct;
-                    const easeIn = p * p * (3 - 2 * p); // smoothstep
+                    const easeIn = p * p * (3 - 2 * p);
                     baseDisp = -back * easeIn;
                 } else {
                     const p = (t - prePct) / (1 - prePct);
-                    const easeOut = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; // easeInOutCubic
+                    const easeOut = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
                     baseDisp = -back + (this.estocadaDistancia + back) * easeOut;
                 }
 
-                // flipado: usar o mesmo baseDisp (já pensado como recuo->avanço);
-                // inverter o sinal aqui fazia o movimento ficar na direção errada
                 const displacement = baseDisp;
 
                 c.save();
                 c.translate(imgX + pivotImgX + displacement, imgY + pivotImgY);
                 c.drawImage(this.imagens.arma, -pivotImgX, -pivotImgY, this.imagens.arma.width, this.imagens.arma.height);
                 c.restore();
-            } else {
+            } else { //desenha a arma normal se nao estiver atacando
                 let posX = -this.position.x - 2 * this.width / 8
                 if (this.arma == 'lanca') posX = -this.position.x - 4 * this.width / 8
 
                 c.drawImage(this.imagens.arma, posX, this.position.y + 7 * this.height / 8 - this.imagens.arma.height, this.imagens.arma.width, this.imagens.arma.height); //desenhando arma
             }
+
             c.restore();
 
-            this.escreverNameTag(); //escreve o nome do jogador
-        } else {
-            // normal
+        } else { //desenha tudo normal (pra direita)
+
             c.fillStyle = 'black'; //borda preta
             c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
@@ -321,10 +300,8 @@ class Jogador {
             c.drawImage(this.imagens.chapeu, this.position.x - 4, this.position.y - this.imagens.chapeu.height + 5, this.imagens.chapeu.width, this.imagens.chapeu.height); //desenhando chapeu
             c.drawImage(this.imagens.roupa, this.position.x - 2, this.position.y + this.height - this.imagens.roupa.height, this.imagens.roupa.width, this.imagens.roupa.height); //desenhando roupa
 
-
-
             // desenhando arma (rotacionada se atacando, estocada translacional)
-            if (this.estaAtacando) {
+            if (this.estaAtacando) { //ataque de espada/marreta
                 const imgX = this.position.x + 6 * this.width / 8;
                 const imgY = this.position.y + 7 * this.height / 8 - this.imagens.arma.height;
 
@@ -345,7 +322,7 @@ class Jogador {
                 c.rotate(angle);
                 c.drawImage(this.imagens.arma, -pivotImgX, -pivotImgY, this.imagens.arma.width, this.imagens.arma.height);
                 c.restore();
-            } else if (this.estaEstocando) {
+            } else if (this.estaEstocando) { //ataque de luvas/lança
                 let imgX = this.position.x + 6 * this.width / 8;
                 let imgY = this.position.y + 7 * this.height / 8 - this.imagens.arma.height;
 
@@ -367,11 +344,11 @@ class Jogador {
                 let baseDisp = 0;
                 if (t < prePct) {
                     const p = t / prePct;
-                    const easeIn = p * p * (3 - 2 * p); // smoothstep
+                    const easeIn = p * p * (3 - 2 * p);
                     baseDisp = -back * easeIn;
                 } else {
                     const p = (t - prePct) / (1 - prePct);
-                    const easeOut = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; // easeInOutCubic
+                    const easeOut = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
                     baseDisp = -back + (this.estocadaDistancia + back) * easeOut;
                 }
 
@@ -381,7 +358,7 @@ class Jogador {
                 c.translate(imgX + pivotImgX + displacement, imgY + pivotImgY);
                 c.drawImage(this.imagens.arma, -pivotImgX, -pivotImgY, this.imagens.arma.width, this.imagens.arma.height);
                 c.restore();
-            } else {
+            } else { //desenha normal se nao estiver atacando
                 let posX = this.position.x + 6 * this.width / 8;
                 if (this.arma == 'lanca') posX = this.position.x + 4 * this.width / 8;
 
@@ -391,10 +368,10 @@ class Jogador {
             //mostra a hitbox da arma
             // c.fillRect(this.position.x + this.width, this.position.y - this.alcanceVerticalBase, this.alcanceBase, this.height + 2 * this.alcanceVerticalBase);
             // c.fillRect(this.position.x + this.width, this.position.y - this.alcanceVerticalBase, 650, this.height + 2 * this.alcanceVerticalBase)
-
-            // desenha a nametag com o nome do jogador acima da cabeça
-            this.escreverNameTag();
         }
+
+        // desenha a nametag com o nome do jogador acima da cabeça por cima de tudo
+        this.escreverNameTag();
     }
 
     update() { //atualiza as propriedades do jogador
@@ -410,19 +387,11 @@ class Jogador {
             this.velocidade.y += this.gravidadeBase; //acelera com a gravidade
         }
 
-        if (this.position.y >= canvas.height + 100) {
+        if (this.position.y >= canvas.height + 100) { // quando o jogador cai da tela, ativa a tela de fim de jogo
             if (!jaExisteVencedor && !jaAlteradoRanking) {
 
                 jaExisteVencedor = 1; jaAlteradoRanking = 1;
                 let jogadorVencedor = this.numeroDoJogador == 0 ? 1 : 0
-
-                //ACESSÓRIOS DO VENCEDOR
-                // console.log("nome: " + arrayDosPlayers[jogadorVencedor].nome)
-                // console.log("roupa: " + arrayDosPlayers[jogadorVencedor].roupa)
-                // console.log("rosto: " + arrayDosPlayers[jogadorVencedor].rosto)
-                // console.log("chapeu: " + arrayDosPlayers[jogadorVencedor].chapeu)
-                // console.log("arma: " + jogadores[jogadorVencedor].arma)
-
 
                 definirImagemVencedor(arrayDosPlayers, jogadorVencedor);
             }
@@ -431,62 +400,6 @@ class Jogador {
     }
 }
 
-// ANTES DE LIMITAR O FPS (FUNCIONA BEM EM 180HZ)
-// class Jogador {
-//     constructor({ x, y, orientacao, cor }) { //propriedades do jogador
-//         this.position = {
-//             x: x,
-//             y: y
-//         }
-//         this.velocidade = {
-//             x: 0,
-//             y: 1
-//         }
-
-//         this.width = 50
-//         this.height = 50
-
-//         this.velocidadeBase = 4.5;
-//         this.saltoBase = 6.5;
-//         this.gravidadeBase = 0.08;
-//         this.pisadaBase = 8;
-//         this.dashBase = 7;
-//         this.dashCooldown = 500; // tempo em ms
-//         this.ataqueBase = 12;
-//         this.alcanceBase = 45;
-
-//         this.podePular = false;
-//         this.podeDoubleJump = false;
-//         this.podePisar = false;
-//         this.podeDarDash = true;
-//         this.podeAtacar = true;
-//         this.soltaParticula = true;
-
-//         this.orientacao = orientacao; //direita ou esquerda
-//         this.estaDandoDash = false;
-//         this.estaSendoAtacado = false;
-//         this.estaDandoPisada = false;
-
-//         this.debounce = false; //faz o jogador ter que soltar o W antes de dar um double jump
-//         this.cor = cor;
-//     }
-
-//     desenhar() { //desenha o jogador na tela
-//         c.fillStyle = this.cor
-//         c.fillRect(this.position.x, this.position.y, this.width, this.height)
-//     }
-
-//     update() { //atualiza as propriedades do jogador
-//         this.desenhar()
-//         this.position.y += this.velocidade.y
-//         this.position.x += this.velocidade.x
-
-//         if (!this.estaDandoDash) {
-//             this.velocidade.y += this.gravidadeBase; //acelera com a gravidade
-//         }
-
-//     }
-// }
 
 class Plataforma {
     constructor({ x, y, width, height, cor, image, colisoes }) { //propriedades de uma plataforma
@@ -507,8 +420,6 @@ class Plataforma {
 
     desenhar() { //desenha a plataforma na tela
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
-        // c.fillStyle = this.cor
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
 
@@ -592,16 +503,16 @@ class Item {
     }
 
     desenhar() {
-        if ((this.arma != 'espada' && this.arma != 'marreta') || this.rodando == false || this.velocidade.x == 0) {
-            if (this.orientacao == 'esquerda') {
+        if ((this.arma != 'espada' && this.arma != 'marreta') || this.rodando == false || this.velocidade.x == 0) { // desenha a arma normalmente
+            if (this.orientacao == 'esquerda') { //flipa pra esquerda
                 c.save();
                 c.scale(-1, 1);
                 c.drawImage(this.imgArma, -this.x - this.width, this.y, this.width, this.height);
                 c.restore();
-            } else {
+            } else { // desenha pra direita
                 c.drawImage(this.imgArma, this.x, this.y, this.width, this.height);
             }
-        } else if ((this.arma == 'espada' || this.arma == 'marreta') && this.rodando) {
+        } else if ((this.arma == 'espada' || this.arma == 'marreta') && this.rodando) { // desenha a arma girando (quando uma espada/marreta é arremessada)
             // girar a arma no sentido horário para a direita e anti-horário para a esquerda
             this.rotacao += this.rotacaoVel;
 
@@ -622,10 +533,9 @@ class Item {
     }
 
     update() {
-        if (this.deletar) {
-            spawnarArma();
+        if (this.deletar) { //quando uma arma cai do mapa, spawna outra
+            spawnarArma(); 
             armas.splice(armas.indexOf(this), 1);
-            
         }
 
         this.desenhar()
@@ -649,7 +559,7 @@ class Item {
             
         }
 
-        this.velocidade.y += this.gravidade
+        this.velocidade.y += this.gravidade // gravidade nas armas arremessadas
 
         if(this.y >= canvas.height) {
             this.deletarArma();
@@ -679,6 +589,7 @@ function soltarParticulas(posX, posY, velocidadeX, velocidadeY, objeto) {
     )
 }
 
+// carrega a imagem de uma arma (já com as proporções certas)
 function carregaArma(arma, img) {
     let imgArma
 
@@ -687,7 +598,6 @@ function carregaArma(arma, img) {
         imgArma.src = '../imgs/arma-' + arma + '.png'
     } else imgArma = img
 
-    // imgArma.onload = () => {
     let larguraDaArma
     switch (arma) {
         case 'lanca':
@@ -707,14 +617,14 @@ function carregaArma(arma, img) {
     }
     imgArma.width = larguraDaArma;
     imgArma.height = imgArma.width * (imgArma.naturalHeight / imgArma.naturalWidth);
-    // }
 
     return imgArma
 }
 
+
+// atualiza os status do jogador quando ele pega uma arma nova (ou quando perde a arma atual)
 function atualizaStatusArma(jogador) {
     let arma = jogador.arma
-    //console.log(arma);
 
     switch (arma) {
         case 'espada':
@@ -723,7 +633,6 @@ function atualizaStatusArma(jogador) {
             jogador.alcanceVerticalBase = 10;
             jogador.ataqueBase = 60; //  base é 30
 
-            //mais lenta, maior alcance horizontal, maior alcance vertical, maior ataque
             break;
         case 'lanca':
             jogador.ataqueCooldown = 450; //base é 400
@@ -735,7 +644,6 @@ function atualizaStatusArma(jogador) {
             jogador.estocadaDistancia = 40;
             jogador.estocadaRecua = 5;
 
-            //mais lenta, muito maior alcance horizontal, muito menor alcance vertical, menor ataque
             break;
         case 'luva':
             jogador.ataqueCooldown = 160; //diminui em 60%, base é 400
@@ -746,7 +654,6 @@ function atualizaStatusArma(jogador) {
             jogador.estocadaDuracao = 100;
             jogador.estocadaDistancia = 16;
 
-            //muito mais rápida, maior alcance horizontal, menor alcance vertical, muito menor ataque
             break;
         case 'marreta':
             jogador.ataqueCooldown = 1000; //aumenta em 100%, base é 400
@@ -754,7 +661,6 @@ function atualizaStatusArma(jogador) {
             jogador.alcanceVerticalBase = 20;
             jogador.ataqueBase = 70; //  base é 30
 
-            //muito mais lenta, maior alcance horizontal, maior alcance vertical, muito maior ataque
             break;
         default:
             jogador.ataqueCooldown = 500; //base é 400
@@ -764,7 +670,7 @@ function atualizaStatusArma(jogador) {
             break;
     }
 
-
+    // atualiza alguns atributos de outros acessórios para nao conflitar
     for (let j = 0; j < 2; j++) {
         switch (arrayDosPlayers[j].chapeu) {
             case 'rei':
@@ -797,7 +703,6 @@ function atualizaStatusArma(jogador) {
         }
     }
 }
-
 
 
 //funçao que toca os sons
@@ -848,6 +753,7 @@ function pararLoop() {
     }
 }
 
+//dropa um item
 function droparItem(outroJogador) {
     let imgX = outroJogador.position.x + 6 * outroJogador.width / 8;
     let imgY = outroJogador.position.y;
@@ -891,17 +797,9 @@ function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// função pra dar o dano quando um jogador é acertado por uma arma arremessada
 function danoDeArremesso(outroJogador, arma) {
     if(outroJogador == arma.jogadorQueArremessou) { //nao deixa o jogador que arremessou a arma tomar dano dela
-        // if (outroJogador.arma != 'vazio') {
-        //     droparItem(outroJogador)
-        // }
-
-        // // pegando a arma
-        // tocarSom("pickup")
-        // outroJogador.arma = arma.arma;
-        // armas.splice(armas.indexOf(arma), 1);
-
         return;
     }
 
@@ -916,9 +814,9 @@ function danoDeArremesso(outroJogador, arma) {
     //audios[0].pause();
     outroJogador.tomandoDano = true;
     outroJogador.estaDandoDash = true;
+
     if(arma.velocidade.x < 30 && arma.velocidade.x > -30) arma.velocidade.x *= 1.3;
     outroJogador.velocidade.x += arma.velocidade.x * 1.3; //altera a velocidade do jogador
-    
 
     let danoDaArma = arma.velocidade.x;
     if(danoDaArma < 0) danoDaArma *= -1;
@@ -943,6 +841,7 @@ function danoDeArremesso(outroJogador, arma) {
     }, 300);
 }
 
+//spawna uma arma aleatoria
 function spawnarArma() {
     tocarSom("spawn")
 
@@ -974,15 +873,11 @@ function spawnarArma() {
     let armaAtual = armas.at(-1)
     armaAtual.colisoes = true;
     armaAtual.rodando = false;
-    //armaAtual.deletarArma();
     armaAtual.daDano = false;
-
-    // setTimeout(() => {
-    //     spawnarArma();
-    // }, 20000); //nova arma a cada 20seg
 }
 
-function explodir(arma, raio) {
+// funçao que gera uma explosão com partículas
+function explodir(arma, raio) { 
     let x = arma.x + arma.width/2
     let y = arma.y + arma.height/2
 
@@ -1191,6 +1086,7 @@ const teclas = [{
     }
 }]
 
+// array dos jogadores
 const jogadores = [new Jogador({
     x: canvas.width / 4,
     y: 100,
@@ -1201,7 +1097,6 @@ const jogadores = [new Jogador({
         rosto: imgRosto1,
         roupa: imgRoupa1,
         chapeu: imgChapeu1,
-        //arma: carregaArma(player1.arma)
     },
     jogador: player1,
     numero: 0,
@@ -1215,7 +1110,6 @@ const jogadores = [new Jogador({
         rosto: imgRosto2,
         roupa: imgRoupa2,
         chapeu: imgChapeu2,
-        //arma: carregaArma(player2.arma)
     },
     jogador: player2,
     numero: 1,
@@ -1242,12 +1136,10 @@ imgPlataformaEsquerda.onload = () => { //espera a plataforma da esquerda carrega
 }
 
 
-
 //fixando o fps em 60
 let fps = 60;
 let intervaloFrame = 1000 / fps; // ~16.67ms
 let ultimoFrame = 0;
-
 
 //boosts de acessórios
 for (let j = 0; j < 2; j++) {
@@ -1304,7 +1196,6 @@ for (let j = 0; j < 2; j++) {
 }
 
 
-
 //função principal que atualiza a tela
 function animar(tempoAtual) {
     requestAnimationFrame(animar); // loop infinito
@@ -1319,31 +1210,24 @@ function animar(tempoAtual) {
 
     ultimoFrame = tempoAtual;
 
-    // c.fillStyle = 'black';
     c.drawImage(imgFundo, 0, 0, canvas.width, canvas.height)
-    // c.fillRect(0, 0, canvas.width, canvas.height);
 
     // desenha plataformas primeiro (fundo do nível)
     plataformas.forEach(plataforma => {
         plataforma.desenhar() //atualiza as plataformas
     })
 
-    // depois desenha particulas (assim elas ficam atrás dos jogadores)
+    // depois desenha particulas
     particulas.forEach(particula => {
         particula.update()
     })
 
-    // limpar partículas mortas para não acumular
-    for (let i = particulas.length - 1; i >= 0; i--) {
-        if (particulas[i].alpha <= 0) particulas.splice(i, 1);
-    }
-
-    // por fim desenha/atualiza jogadores (ficam acima das partículas)
+    //desenha os jogadores
     jogadores.forEach(jogador => {
         jogador.update(); //atualiza o jogador
     })
 
-
+    //desenha as armas
     armas.forEach(arma => {
         arma.update();
     })
@@ -1353,7 +1237,6 @@ function animar(tempoAtual) {
         let outroJogador = jogadores[1]; //definindo o outro jogador
         if (outroJogador == jogadores[i]) outroJogador = jogadores[0];
 
-        //movimentos horizontais
         //movimento pra direita
         if (teclas[i].direita.pressionada && !teclas[i].esquerda.pressionada) {
             if ((jogadores[i].estaDandoDash && jogadores[i].orientacao == 'esquerda') || !jogadores[i].estaDandoDash) { // verificação se o jogador está dando dash
@@ -1364,7 +1247,8 @@ function animar(tempoAtual) {
                 jogadores[i].seMoveu = true;
                 jogadores[i].orientacao = 'direita';
             }
-            //movimento pra esquerda
+
+        //movimento pra esquerda
         } else if (teclas[i].esquerda.pressionada && !teclas[i].direita.pressionada) {
             if ((jogadores[i].estaDandoDash && jogadores[i].orientacao == 'direita') || !jogadores[i].estaDandoDash) { // verificação se o jogador está dando dash
                 if (!jogadores[i].estaSendoAtacado) { // verificação se o jogador está sendo atacado
@@ -1425,13 +1309,14 @@ function animar(tempoAtual) {
 
 
         //pisada
-        if (teclas[i].baixo.pressionada && jogadores[i].podePisar) {
+        if (teclas[i].baixo.pressionada && jogadores[i].podePisar && !teclas[i].cima.pressionada) {
             tocarSom('dash_' + randomInt(1, 4));
 
             if (jogadores[i].velocidade.y <= 0) jogadores[i].velocidade.y = jogadores[i].pisadaBase * 1.4;
             else jogadores[i].velocidade.y += jogadores[i].pisadaBase;
 
             jogadores[i].podeDoubleJump = false;
+
             jogadores[i].podePisar = false; //gasta a pisada
             jogadores[i].estaDandoPisada = true;
         }
@@ -1519,9 +1404,7 @@ function animar(tempoAtual) {
         }
 
         //solta partícula enquanto o jogador estiver dando dash
-        if (jogadores[i].estaDandoDash) { //&& jogadores[i].soltaParticula) {
-            // jogadores[i].soltaParticula = false;
-
+        if (jogadores[i].estaDandoDash) {
             let posX = jogadores[i].position.x + jogadores[i].width / 2;
             let posY = jogadores[i].position.y + jogadores[i].height + ((Math.random() - 0.5) * 30);
 
@@ -1533,11 +1416,6 @@ function animar(tempoAtual) {
             } else if (velocidadeX < 0 && jogadores[i].velocidade.x < 0) velocidadeX *= -1;
 
             soltarParticulas(posX, posY, velocidadeX, velocidadeY, jogadores[i])
-
-            // setTimeout(() => {
-            //     jogadores[i].soltaParticula = true;
-            // }, 1);
-
         }
 
         //ataque
@@ -1576,8 +1454,8 @@ function animar(tempoAtual) {
                 }
 
 
-                if (ataqueValido) { //efeitos do ataque
-                    if(jogadores[i].arma == 'bomba' || outroJogador.arma == 'bomba') {
+                if (ataqueValido) { //se o ataque acertar, roda os efeitos
+                    if(jogadores[i].arma == 'bomba' || outroJogador.arma == 'bomba') { //explode caso alguém seja atacado ou ataque com uma bomba na mão
                         let x = jogadores[i].position.x;
                         jogadores[i].position.x += orientacaoAtaque * -100; 
 
@@ -1591,7 +1469,7 @@ function animar(tempoAtual) {
                         if(jogadores[i].arma == 'bomba') jogadores[i].arma = 'vazio';
                         if(outroJogador.arma == 'bomba') outroJogador.arma = 'vazio';
                         
-                    } else {
+                    } else { //ataque de armas normais
                         //som de ataque
                         tocarSom(jogadores[i].arma + "_" + randomInt(1, 3));
 
@@ -1601,7 +1479,7 @@ function animar(tempoAtual) {
 
                         outroJogador.danoRecebido += (jogadores[i].ataqueBase + jogadores[i].boostDano) //registra o dano causado do jogador
 
-                        jogadores[i].boostDano += jogadores[i].ataqueBase * jogadores[i].acrescimoBoostDano; //aumenta o knockback a cada hit em 10%
+                        jogadores[i].boostDano += jogadores[i].ataqueBase * jogadores[i].acrescimoBoostDano; //aumenta o knockback a cada hit
 
                         //duração da animação de ser atacado
                         setTimeout(() => {
@@ -1615,73 +1493,86 @@ function animar(tempoAtual) {
 
             //rebater armas no ar
             armas.forEach(arma => {
+                //equaçoes de mov. variado pra rebater
+                let dx = Math.abs((outroJogador.position.x) - (jogadores[i].position.x));
+                let dy = Math.abs(outroJogador.position.y - jogadores[i].position.y);
+                let dh = Math.sqrt(dx**2 + dy**2);
+
+                let sin = dy/dh;
+                let cos = dx/dh;
+                let tg = sin/cos;
+
+                let vx = 45 + Math.abs(jogadores[i].velocidade.x) + jogadores[i].boostDano/2; //velocidade horizontal é fixa
+
+                if(dx < 210) vx = 25; //ajustes pra caso os jogadores estejam muito perto um do outro (pra nao ficar absurdo de rapido)
+                if(dx < 150) vx = 15;
+            
+                let vy = vx * tg; // determina a velocidade vertical a partir da velocidade horizontal
+                if(vy > 90) vy = 90; // o máximo para a velocidade vertical é 90
+                
                 if ((arma.velocidade.x >= 1 || arma.velocidade.x <= -1) && arma.y + arma.height >= jogadores[i].position.y - jogadores[i].alcanceVerticalBase && arma.y <= jogadores[i].position.y + jogadores[i].height + jogadores[i].alcanceVerticalBase) {
-                    if (jogadores[i].orientacao == 'direita' && arma.x <= jogadores[i].position.x + jogadores[i].width + jogadores[i].alcanceBase && arma.x >= jogadores[i].position.x) {
+                    if (jogadores[i].orientacao == 'direita' && arma.x <= jogadores[i].position.x + jogadores[i].width + jogadores[i].alcanceBase + 30 && arma.x >= jogadores[i].position.x) {
+                        tocarSom(jogadores[i].arma + "_" + randomInt(1, 3));
+                        
                         //ataque pra direita
-                        arma.velocidade.x *= -1;
-                        arma.velocidade.y = -4;
+                        arma.velocidade.x = jogadores[i].orientacao == 'direita' ? vx : -vx;
+                        arma.velocidade.y = outroJogador.position.y > jogadores[i].position.y ? vy : -vy-3;
+                        arma.orientacao = 'direita';
+
+                        arma.jogadorQueArremessou = jogadores[i];
+                        arma.daDano = true;
+                        
                     }
-                    if (jogadores[i].orientacao == 'esquerda' && arma.x + arma.width >= jogadores[i].position.x - jogadores[i].alcanceBase && arma.x + arma.width <= jogadores[i].position.x + jogadores[i].width) {
+                    if (jogadores[i].orientacao == 'esquerda' && arma.x + arma.width >= jogadores[i].position.x - jogadores[i].alcanceBase - 30 && arma.x + arma.width <= jogadores[i].position.x + jogadores[i].width) {
+                        tocarSom(jogadores[i].arma + "_" + randomInt(1, 3));
+
                         //ataque pra esquerda
-                        arma.velocidade.x *= -1;
-                        arma.velocidade.y = -4;
+                        arma.velocidade.x = jogadores[i].orientacao == 'direita' ? vx : -vx;
+                        arma.velocidade.y = outroJogador.position.y > jogadores[i].position.y ? vy : -vy-3;
+                        arma.orientacao = 'esquerda';
+
+                        arma.jogadorQueArremessou = jogadores[i];
+                        arma.daDano = true;
                     }
                 }
             })
         }
 
-        //arremesso
+        //arremesso de armas
         if (teclas[i].arremesso.pressionada && jogadores[i].arma != "vazio" && jogadores[i].podeArremessar) {
-
-
-            // tocarSom("arremesso_da_espada")
             tocarSom("throw_" + randomInt(1, 4))
 
             let imgX = jogadores[i].position.x + 6 * jogadores[i].width / 8;
             let imgY = jogadores[i].position.y + 7 * jogadores[i].height / 8 - jogadores[i].imagens.arma.height;
 
             if (jogadores[i].orientacao == 'esquerda') {
-                // use the mirror spawn X that matches how the player draws the flipped weapon
                 imgX = jogadores[i].position.x - 6 * jogadores[i].width / 8;
-
             }
 
-            let velocidadeDoArremesso = 26;
-
-            // a lança é mais rápida no arremesso
-            if (jogadores[i].arma == 'lanca') {
-                velocidadeDoArremesso = 40;
-            }
-
-            //equaçoes de mov. variado
+            //equaçoes de mov. variado pra mira automática
             let dx = Math.abs((outroJogador.position.x) - (jogadores[i].position.x));
             let dy = Math.abs(outroJogador.position.y - jogadores[i].position.y);
             let dh = Math.sqrt(dx**2 + dy**2);
 
             let sin = dy/dh;
             let cos = dx/dh;
+            let tg = sin/cos;
 
-            // let v = Math.sqrt((dx * 1.3)/(sin*cos));
-            // let v = (dx * 1.3)/(sin*50);
+            let vx = 45 + Math.abs(jogadores[i].velocidade.x) + jogadores[i].boostDano/2; //velocidade horizontal é fixa
 
-            let vx = 45 + Math.abs(jogadores[i].velocidade.x) + jogadores[i].boostDano/2; //velocidade base
-            if(dx < 210) vx = 25; //ajustes pra caso os jogadores estejam muito perto
+            if(dx < 210) vx = 25; //ajustes pra caso os jogadores estejam muito perto um do outro (pra nao ficar absurdo de rapido)
             if(dx < 150) vx = 15;
-            // if(dx < 90) vx = 1;
         
-            let v = vx/cos;
-            if(dx < 90) v *= 4;
+            let vy = vx * tg; // determina a velocidade vertical a partir da velocidade horizontal
+            if(vy > 90) vy = 90; // o máximo para a velocidade vertical é 90
 
-            let vy = v * sin;
-            
-            if(vy > 90) vy = 90;
-
+            // caso o jogador arremesse pro lado contrario de onde está o outro jogador, o arremesso é horizontal com velocidade fixa
             if((jogadores[i].orientacao == 'direita' && outroJogador.position.x < jogadores[i].position.x) || (jogadores[i].orientacao == 'esquerda' && outroJogador.position.x > jogadores[i].position.x)) {
                 vx = 40;
                 vy = 0;
             }
 
-
+            // cria a arma com as velocidades encontradas
             armas.push(new Item({
                 x: imgX,
                 y: imgY,
@@ -1708,12 +1599,6 @@ function animar(tempoAtual) {
                 setTimeout(() => {
                     armaAtual.explode = true;
                 }, 0);
-            }
-            //armaAtual.deletarArma();
-
-            //a lança "quica" menos
-            if (armaAtual.arma == 'lanca') {
-                armaAtual.bounciness = -0.205;
             }
 
             jogadores[i].arma = 'vazio';
@@ -1769,9 +1654,6 @@ function animar(tempoAtual) {
         })
     })
 
-
-
-
     //colisões (jogador-jogador e jogador-plataforma)
     jogadores.forEach(jogador => {
         let outroJogador = jogadores[1];
@@ -1822,7 +1704,6 @@ function animar(tempoAtual) {
                     }
                     else {
 
-                        //console.log('cu1')
                         if (arma.pegavel) {
                             //arremessando a arma antiga
                             if (outroJogador.arma != 'vazio') {
@@ -1896,7 +1777,6 @@ function animar(tempoAtual) {
 
 
                 if (arma.y + arma.height <= outroJogador.position.y + outroJogador.velocidade.y && arma.y + arma.height + arma.velocidade.y >= outroJogador.position.y + outroJogador.velocidade.y && arma.x + arma.width > outroJogador.position.x && arma.x < outroJogador.position.x + outroJogador.width) {
-                    
                     if(arma.arma == 'bomba' && arma.explode) {
                         explodir(arma, 200);    
                     }
@@ -1994,14 +1874,6 @@ function animar(tempoAtual) {
 
                 outroJogador.velocidade.y = 0;
                 jogador.velocidade.y = 0;
-
-                // jogador.position.y = plataforma.position.y - jogador.height;
-                // jogador.velocidade.y = 0;
-
-                // if (outroJogador.position.y + outroJogador.height > jogador.position.y && outroJogador.position.y < jogador.position.y + jogador.height) {
-                //     jogador.position.x = outroJogador.position.x + outroJogador.width;
-                //     outroJogador.velocidade.y -= 1;
-                // }
             }
 
             if (plataforma.colisoes) {
@@ -2076,17 +1948,8 @@ function animar(tempoAtual) {
         } else {
             if (((jogador.position.y + jogador.height < outroJogador.position.y - 1) || (jogador.position.y + jogador.height > outroJogador.position.y + 2))) {
                 jogador.pisandoNoChao[3] = false;
-                //console.log("entrou aqui")
             }
         }
-
-        // players na vertical para cima (também cuida de casos em que o jogador entra dentro do outro)
-        // if (((jogador.position.y >= outroJogador.position.y + outroJogador.height && jogador.position.y + jogador.velocidade.y <= outroJogador.position.y + outroJogador.height) || (jogador.position.y <= outroJogador.position.y + outroJogador.height && jogador.position.y > outroJogador.position.y)) && jogador.position.x + jogador.width > outroJogador.position.x && jogador.position.x < outroJogador.position.x + outroJogador.width) {
-        //     jogador.position.y = outroJogador.position.y + outroJogador.height;
-        //     jogador.velocidade.y = 0;
-
-        //      console.log("TESTE")   
-        // }
 
         // detectando se há um jogador acima do outro
         if (outroJogador.position.y + outroJogador.height >= jogador.position.y - 0.3 && outroJogador.position.y + outroJogador.height < jogador.position.y + 0.3 && jogador.position.x + jogador.width >= outroJogador.position.x && jogador.position.x <= outroJogador.position.x + outroJogador.width) { //0.3 é uma margem de segurança
@@ -2123,22 +1986,8 @@ function animar(tempoAtual) {
             }
         }
 
-        // if(jogador.position.y + jogador.height >= outroJogador.position.y && jogador.position.y <= outroJogador.position.y + outroJogador.height  &&  jogador.position.x + jogador.width <= outroJogador.position.x  &&  jogador.position.x + jogador.width + jogador.velocidade.x >= outroJogador.position.x + outroJogador.velocidade.x) {
-        //   console.log('DESGRAÇA');
-        //   outroJogador.velocidade.x = 0;
-        //   outroJogador.position.x = jogador.position.x + jogador.width;
-        // }
-
-        // if(jogador.position.y + jogador.height >= outroJogador.position.y && jogador.position.y <= outroJogador.position.y + outroJogador.height  &&  jogador.position.x >= outroJogador.position.x + outroJogador.width  &&  jogador.position.x + jogador.velocidade.x <= outroJogador.position.x + outroJogador.width + outroJogador.velocidade.x) {
-        //   console.log('DESGRAÇA 2');
-        //   outroJogador.velocidade.x = 0;
-        //   outroJogador.position.x = jogador.position.x - jogador.width;
-        // }
-
         // players na horizontal direita para esquerda
         if (jogador.position.y + jogador.height >= outroJogador.position.y && jogador.position.y <= outroJogador.position.y + outroJogador.height && jogador.position.x >= outroJogador.position.x + outroJogador.width && jogador.position.x + jogador.velocidade.x <= outroJogador.position.x + outroJogador.width + outroJogador.velocidade.x) {
-
-
             //colisão
             if (jogador.position.x > outroJogador.position.x + outroJogador.width && jogador.velocidade.x != 0) {
                 jogador.position.x = outroJogador.position.x + outroJogador.width;
@@ -2168,15 +2017,11 @@ function animar(tempoAtual) {
     })
 }
 
-// tocarLoop();
-//só toca o som ambiente se o usuário interagir com a pagina
-document.addEventListener("keydown", () => {
-    if (audioContext.state == "suspended") {
-        audioContext.resume();
-    }
-    tocarLoop();
-}, { once: true });
-
+// começa o som ambiente;
+if (audioContext.state == "suspended") {
+    audioContext.resume();
+}
+tocarLoop();
 
 
 /////////
@@ -2184,6 +2029,7 @@ animar(0); //inicia o jogo
 /////////
 
 
+//caso os jogadores comecem o jogo sem armas, elas spawnam depois de um tempo
 if(jogadores[0].arma == 'vazio') {
     setTimeout(() => {
         spawnarArma();
@@ -2208,38 +2054,9 @@ cheet('w w s s a d a d', () => {
 });
 
 
-
-//spawna a primeira arma
-// setTimeout(() => {
-//     spawnarArma();
-// }, 20000);
-
-
 //detecção das teclas
-
 let teclasPlayer1 = JSON.parse(localStorage.getItem("teclasPlayer1"));
 let teclasPlayer2 = JSON.parse(localStorage.getItem("teclasPlayer2"));
-
-// const teclasPlayer1 = {
-//     //no lugar das strings, vai ter o code da tecla
-//     cima: 'KeyW',
-//     baixo: 'KeyS',
-//     direita: 'KeyD',
-//     esquerda: 'KeyA',
-//     ataque: 'KeyG',
-//     dash: 'KeyH',
-//     arremesso: 'KeyJ',
-// };
-
-// const teclasPlayer2 = {
-//     cima: 'ArrowUp',
-//     baixo: 'ArrowDown',
-//     direita: 'ArrowRight',
-//     esquerda: 'ArrowLeft',
-//     ataque: 'Numpad1',
-//     dash: 'Numpad2',
-//     arremesso: 'Numpad3',
-// };
 
 window.addEventListener('keydown', ({ code }) => {
     switch (code) {
@@ -2295,8 +2112,6 @@ window.addEventListener('keydown', ({ code }) => {
 
 
 window.addEventListener('keyup', ({ code }) => { //quando soltar a tecla
-    // console.log(code);
-
     switch (code) {
         //teclas do jogador 0
         case teclasPlayer1.cima: //soltou W
@@ -2349,7 +2164,6 @@ window.addEventListener('keyup', ({ code }) => { //quando soltar a tecla
             break;
     }
 })
-
 
 
 //parte do rafael
