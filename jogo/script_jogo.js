@@ -2017,11 +2017,13 @@ function animar(tempoAtual) {
     })
 }
 
-// começa o som ambiente;
-if (audioContext.state == "suspended") {
-    audioContext.resume();
-}
-tocarLoop();
+// começa o som ambiente só quando o jogador interage com a pagina;
+document.addEventListener("keydown", () => {
+    if (audioContext.state == "suspended") {
+        audioContext.resume();
+    }
+    tocarLoop();
+}, { once: true });
 
 
 /////////
