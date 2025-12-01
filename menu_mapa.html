@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Mapa</title>
+    <link rel="stylesheet" href="style_mapa.css">
+</head>
+
+<body>
+    <div id="fixed-container"> <!--CONTÂINER QUE COMPORTARÁ O GRID DA PÁGINA-->
+        <div id="menu-mapas">
+            <header> <!--HEADER-->
+                <h1>Selecione a Arena!</h1>
+            </header>
+
+            <div id="selecao-mapas">  <!--DIV QUE CONTERÁ O MENU DE SELEÇÃO DE MAPAS-->
+                <a class="mapa-link" data-set="primavera">  <!--HYPERLINK PARA A PÁGINA DA ARENA-->
+                    <div class="nome-mapa">  <!--NOME DO MAPA-->
+                        <h2>Castelo Primavera</h2>
+                    </div>
+                    <div class="mapa-imagem-container">
+                        <img src="./imgs/fundo-primavera.jpg" alt="Castelo Primavera"> <!--IMAGEM DO MAPA-->
+                    </div>
+                    <div class="legenda-mapa">  <!--DESCRIÇÃO OBSCURA DO MAPA-->
+                        <p>Uma paz perturbada...</p>
+                    </div>
+                </a>
+
+                <a class="mapa-link" data-set="luar">
+                    <div class="nome-mapa">
+                        <h2>Vale do Luar</h2>
+                    </div>
+                    <div class="mapa-imagem-container">
+                        <img src="./imgs/fundo-luar.jpg" alt="Castelo Primavera">
+                    </div>
+                    <div class="legenda-mapa">
+                        <p>Uma luta nas alturas...</p>
+                    </div>
+                </a>
+
+                <a class="mapa-link" data-set="neve">
+                    <div class="nome-mapa">
+                        <h2>Campo Nevado</h2>
+                    </div>
+                    <div class="mapa-imagem-container">
+                        <img src="./imgs/fundo-neve.jpg" alt="Castelo Primavera">
+                    </div>
+                    <div class="legenda-mapa">
+                        <p>Uma nevasca mortal...</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script_mapa.js"></script>
+</body>
+
+</html>

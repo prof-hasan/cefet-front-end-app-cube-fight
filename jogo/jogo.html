@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubefied</title>
+    <link rel="stylesheet" href="style_jogo.css">
+</head>
+
+<body>
+    <canvas></canvas>
+
+    <div id="conteiner-vitoria">
+        <div id="tela-vitoria">
+            <h1>VITÓRIA!</h1>
+            <div id="conteudo-principal">
+                <div id="player-vencedor">
+                    <h2 id="nome-vencedor"></h2>
+                    <div id="imagem-player">
+                        <img src="../imgs/cubo.jpg" id="cubo-vencedor">
+                        <img src="" id="chapeu-vencedor">
+                        <img src="" id="rosto-vencedor">
+                        <img src="" id="roupa-vencedor">
+                    </div>
+                </div>
+
+                <div id="status-vitoria">
+                    <label>
+                        Tempo de partida:
+                        <input id="tempo-status" class="status-vencedor" type="text" disabled>
+                    </label>
+                    <label>
+                        Dano causado:
+                        <input id="dano-causado-status" class="status-vencedor" type="number" disabled>
+                    </label>
+                    <label>
+                        Dano recebido:
+                        <input id="dano-recebido-status" class="status-vencedor" type="number" disabled>
+                    </label>
+                </div>
+            </div>
+            <button class="opcao" id="btn-rejogar"></button>
+            <p id="legenda-rejogar" class="legenda-opcao">Jogar denovo!</p>
+
+            <a href="../index.html"> <!--AQUI DEVE TER A PÁGINA DO MENU-->
+                <button class="opcao" id="btn-voltar-menu"></button>
+            </a>
+            <p id="legenda-voltar-menu" class="legenda-opcao">Voltar ao menu!</p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/cheet.js@0.3.3/cheet.min.js"></script>
+    <script src="script_jogo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_index.css">
+    <title>Cubefied</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="fixed-container">
+
+            <!--Menu principal-->
+            <div class="container-texto" id="menu-principal">
+                <header>
+                    <h2>CUBEFIED</h2>
+                </header>
+
+
+                <!--Opcões menu-->
+                <div class="texto" id="opcoes-menu-principal">
+                    <h2 id="titulo-opcoes-menu-principal">Opções:</h2>
+                    <button class="botao" id="botao-jogar"></button> <!--Botão jogar-->
+                    <button class="botao" id="botao-controles"></button>
+                </div>
+            </div>
+            <div id="container-ranking">
+                <div id="tabela-ranking">
+                    <table>
+                        <caption>RANKING DOS JOGADORES</caption>
+                        <thead>
+                            <tr>
+                                <th>NOME</th>
+                                <th>VITÓRIAS</th>
+                                <th>DANO TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--Aba dos controles-->
+            <div class="container-texto aba desabilitado" id="controles-aba-player">
+                <div class="texto" id="container-controles">
+                    <h2>Controles</h2>
+                    <button class="botao botao-controles-player" id="botao-controles-player-1"
+                        data-teclaplayer="teclasPlayer1"></button>
+                    <button class="botao botao-controles-player" id="botao-controles-player-2"
+                        data-teclaplayer="teclasPlayer2"></button>
+                </div>
+                          
+            </div>
+
+            <!--Aba perguntando qual tipo de tecla quer mudar-->
+            <div class="container-texto aba desabilitado" id="controles-opcoes">
+                <div class="texto" id="container-controles-opcoes">
+                    <h2>Quais teclas deseja trocar?</h2>
+                    <button class="botao" id="botao-controles-ataque"></button>
+                    <button class="botao" id="botao-controles-movimento"></button>
+                </div>
+            </div>
+
+            <!--Aba da mudança de teclas ataque-->
+            <div class="container-texto aba desabilitado" id="controles-alterar-ataque">
+                <div class="texto" id="container-controles-alterar-ataque">
+                    <h2>Mundança de tecla</h2>
+                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-atacar"
+                        data-tecla="ataque"></button>
+                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-arremesso"
+                        data-tecla="arremesso"></button>
+                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-dash"
+                        data-tecla="dash"></button>
+                </div>
+            </div>
+
+            <!--Aba da mudança de teclas de movimento-->
+            <div class="container-texto aba desabilitado" id="controles-alterar-movimento">
+                <div class="texto" id="container-controles-alterar-movimento">
+                    <h2>Mundança de tecla</h2>
+                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-cima"
+                        data-tecla="cima"></button>
+                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-direita"
+                        data-tecla="direita"></button>
+                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-esquerda"
+                        data-tecla="esquerda"></button>
+                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-baixo"
+                        data-tecla="baixo"></button>
+                </div>
+            </div>
+
+            <!--Lugar pra trocar de tecla-->
+            <div class="container-texto desabilitado aba" id="controles-informar-tecla">
+                <div class="texto" id="container-controles-informar-tecla">
+                    <h2>Pressione a tecla:</h2>
+                    <p id="tecla-pressionada">KeyW</p>
+                    <button class="botao" id="botao-controles-confirmar"></button>
+                </div>
+            </div>
+
+            <!--Seleção de acessórios-->
+            <div class="container-selecao">
+                <!-- <canvas> -->
+                <header>
+                    <h1>CUBEFIED</h1>
+                </header>
+
+                <!--Botão de voltar pro menu principal-->
+                <button class="botao voltar" id="botao-menu-principal-voltar"></button>
+
+                <!--Aba de seleção do player 1-->
+                <div class="player-1 selecao">
+                    <h2>Player 1</h2>
+                    <input class="inputNome" type="text" placeholder="Digite seu nome...">
+                    <!--Input para digitar o nome do player 1-->
+
+                    <div class="todo-o-player" id="todo-o-player-1">
+                        <img src="imgs/cubo.jpg" class="cubo-img-menu"> <!--Imagem do cubo player 1-->
+
+
+                        <!--Imagens das caras player 1-->
+                        <img src="imgs/cara-feliz.png" class="cara cara-feliz acessorio" data-set="feliz"
+                            data-player="1">
+                        <img src="imgs/cara-bravo.png" class="cara cara-bravo acessorio" data-set="bravo"
+                            data-player="1">
+                        <img src="imgs/cara-surpreso.png" class="cara cara-surpreso acessorio" data-set="surpreso"
+                            data-player="1">
+                        <img src="imgs/cara-neutro.png" class="cara cara-neutro acessorio" data-set="neutro"
+                            data-player="1">
+
+
+                        <!--Imagens dos chapéus player 1-->
+                        <img src="imgs/chapeu-mago.png" class="chapeu chapeu-mago acessorio" data-set="mago"
+                            data-player="1">
+                        <img src="imgs/chapeu-paleto.png" class="chapeu chapeu-paleto acessorio" data-set="paleto"
+                            data-player="1">
+                        <img src="imgs/chapeu-cowboy.png" class="chapeu chapeu-cowboy acessorio" data-set="cowboy"
+                            data-player="1">
+                        <img src="imgs/chapeu-rei.png" class="chapeu chapeu-coroa acessorio" data-set="rei"
+                            data-player="1">
+
+                        <!--Imagens das roupas player 1-->
+                        <img src="imgs/roupa-mago.png" class="roupa roupa-mago acessorio" data-set="mago"
+                            data-player="1">
+                        <img src="imgs/roupa-rei.png" class="roupa roupa-rei acessorio" data-set="rei" data-player="1">
+                        <img src="imgs/roupa-paleto.png" class="roupa roupa-paleto acessorio" data-set="paleto"
+                            data-player="1">
+                        <img src="imgs/roupa-cowboy.png" class="roupa roupa-cowboy acessorio" data-set="cowboy"
+                            data-player="1">
+
+                        <!--Imagens das armas player 1-->
+                        <img src="imgs/arma-luva.png" class="arma arma-luva acessorio" data-set="luva" data-player="1">
+                        <img src="imgs/arma-lanca.png" class="arma arma-lanca acessorio" data-set="lanca"
+                            data-player="1">
+                        <img src="imgs/arma-espada.png" class="arma arma-espada acessorio" data-set="espada"
+                            data-player="1">
+                        <img src="imgs/arma-marreta.png" class="arma arma-marreta acessorio" data-set="marreta"
+                            data-player="1">
+                    </div>
+
+                    <!--Botões de mudar o chapéu-->
+                    <button class="botao botao-acessorio passar botao-chapeu" id="botao-chapeu-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-chapeu" id="botao-chapeu-voltar-player1"></button>
+
+                    <!--botões de mudar a cara-->
+                    <button class="botao botao-acessorio passar botao-cara" id="botao-cara-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-cara" id="botao-cara-voltar-player1"></button>
+
+
+                    <!--botões de mudar a roupa-->
+                    <button class="botao botao-acessorio passar botao-roupa" id="botao-roupa-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-roupa" id="botao-roupa-voltar-player1"></button>
+
+                </div>
+
+
+                <!--Aba de seleção do player 2-->
+                <div class="player-2 selecao">
+                    <h2>Player 2</h2>
+                    <input class="inputNome" type="text" placeholder="Digite seu nome...">
+                    <!--Input para digitar o nome do player 2-->
+                    <div class="todo-o-player" id="todo-o-player-2"> <!--Guarda todas as imagens do player-->
+                        <img src="imgs/cubo.jpg" class="cubo-img-menu"> <!--Imagem do cubo player 2-->
+
+
+                        <!--Imagens das caras player 2-->
+                        <img src="imgs/cara-feliz.png" class="cara cara-feliz acessorio" data-set="feliz"
+                            data-player="2">
+                        <img src="imgs/cara-bravo.png" class="cara cara-bravo acessorio" data-set="bravo"
+                            data-player="2">
+                        <img src="imgs/cara-surpreso.png" class="cara cara-surpreso acessorio" data-set="surpreso"
+                            data-player="2">
+                        <img src="imgs/cara-neutro.png" class="cara cara-neutro acessorio" data-set="neutro"
+                            data-player="2">
+
+
+                        <!--Imagens dos chapéus player 2-->
+                        <img src="imgs/chapeu-mago.png" class="chapeu chapeu-mago acessorio" data-set="mago"
+                            data-player="2">
+                        <img src="imgs/chapeu-paleto.png" class="chapeu chapeu-paleto acessorio" data-set="paleto"
+                            data-player="2">
+                        <img src="imgs/chapeu-cowboy.png" class="chapeu chapeu-cowboy acessorio" data-set="cowboy"
+                            data-player="2">
+                        <img src="imgs/chapeu-rei.png" class="chapeu chapeu-coroa acessorio" data-set="rei"
+                            data-player="2">
+
+                        <!--Imagens das roupas player 2-->
+                        <img src="imgs/roupa-mago.png" class="roupa roupa-mago acessorio" data-set="mago"
+                            data-player="2">
+                        <img src="imgs/roupa-rei.png" class="roupa roupa-rei acessorio" data-set="rei" data-player="2">
+                        <img src="imgs/roupa-paleto.png" class="roupa roupa-paleto acessorio" data-set="paleto"
+                            data-player="2">
+                        <img src="imgs/roupa-cowboy.png" class="roupa roupa-cowboy acessorio" data-set="cowboy"
+                            data-player="2">
+
+                        <!--Imagens das armas player 2-->
+                        <img src="imgs/arma-luva.png" class="arma arma-luva acessorio" data-set="luva" data-player="2">
+                        <img src="imgs/arma-lanca.png" class="arma arma-lanca acessorio" data-set="lanca"
+                            data-player="2">
+                        <img src="imgs/arma-espada.png" class="arma arma-espada acessorio" data-set="espada"
+                            data-player="2">
+                        <img src="imgs/arma-marreta.png" class="arma arma-marreta acessorio" data-set="marreta"
+                            data-player="2">
+
+                    </div>
+
+
+                    <!--botões de mudar chapéu player 2-->
+                    <button class="botao botao-acessorio passar botao-chapeu" id="botao-chapeu-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-chapeu" id="botao-chapeu-voltar-player2"></button>
+
+                    <!--Botões de mudar cara player 2-->
+                    <button class="botao botao-acessorio passar botao-cara" id="botao-cara-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-cara" id="botao-cara-voltar-player2"></button>
+
+                    <!--Botões de mudar roupa player 2-->
+                    <button class="botao botao-acessorio passar botao-roupa" id="botao-roupa-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-roupa" id="botao-roupa-voltar-player2"></button>
+
+                </div>
+
+                <div class="container-texto desabilitado" id="container-boosts">
+                    <h2 id="boosts-nome-acessorio"></h2> <!--NOME DO ACESSORIO-->
+                    <p id="boosts-vantagens-acessorio" class="desabilitado"></p> <!--BOOSTS DOS ACESSORIOS NÃO ARMA-->
+                    <p id="boosts-vantagens-arma" class="desabilitado"> <!--BOOSTS DAS ARMAS-->
+                        Cooldown: <span id="cooldown-de-ataque"></span><br>
+                        Alcance: <span id="alcance-da-arma"></span><br>
+                        Empurrão: <span id="empurrao-da-arma"></span><br>
+                        Dano: <span id="dano-da-arma"></span>
+                    </p>
+                </div>
+
+                <!--Botão Fight!-->
+                <button id="botao-fight" class="botao"></button>
+            </div>
+
+            <!--Aba de seleção das armas-->
+            <div class="container-selecao desabilitado aba" id="selecao-arma">
+                <header>
+                    <h1>Arma Inicial</h1>
+                </header>
+                <!--Seleção do player 1-->
+                <div class="player-1 selecao">
+                    <h2>Player 1</h2>
+
+                    <!--Botões de mudar arma player 1-->
+                    <button class="botao botao-acessorio passar botao-arma" id="botao-arma-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-arma" id="botao-arma-voltar-player1"></button>
+
+                </div>
+
+                <!--Seleção do player 2-->
+                <div class="player-2 selecao">
+                    <h2>Player 2</h2>
+
+                    <!--Botões de mudar arma player 2-->
+                    <button class="botao botao-acessorio passar botao-arma" id="botao-arma-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-arma" id="botao-arma-voltar-player2"></button>
+                </div>
+
+                <button class="botao" id="botao-pronto"></button>
+
+            </div>
+
+            <!--Botão de fechar coisas-->
+            <button class="botao desabilitado" id="botao-fechar"></button>
+
+        </div>
+    </div>
+
+
+    <script src="script_index.js"></script>
+</body>
+
+</html>

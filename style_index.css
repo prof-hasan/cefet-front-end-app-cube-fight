@@ -1,0 +1,945 @@
+
+body {
+    background-image: url(imgs/fundoSelecaoArmas.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Jersey 10", sans-serif;
+}
+
+.container-selecao {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    min-height: 100dvh;
+    grid-template-areas: 
+        "header header header header"
+        "leaderboard selecao-1 selecao-2 anuncios"
+        "footer footer footer footer"
+        ;
+    
+    font-size: 1em;
+}
+
+#container-ranking {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(0, 0, 0, 0.8);
+    z-index: 999999999;
+    display: none;
+}
+
+#tabela-ranking {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 20, 0.85);
+    padding: 20px 30px;
+    border-radius: 20px;
+    border: 3px solid rgb(103, 164, 235);
+    font-family: "Jersey 10", sans-serif;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#tabela-ranking thead th {
+    position: sticky;
+    top: 0;
+}
+
+#tabela-ranking table {
+    width: 600px;
+    color: white;
+    border-collapse: collapse;
+    font-size: 2em;
+    text-align: center;
+}
+
+#tabela-ranking caption {
+    font-size: 2.8em;
+    color: greenyellow;
+    margin-bottom: 20px;
+}
+
+#tabela-ranking th {
+    background-color: rgb(10, 5, 37);
+    border-bottom: 3px solid rgb(103, 164, 235);
+    padding: 10px;
+}
+
+#tabela-ranking td {
+    padding: 12px 0;
+    border-bottom: 2px solid rgba(103, 164, 235, 0.5);
+}
+
+#tabela-ranking input {
+    width: 90%;
+    padding: 5px;
+    margin-right: 5px; margin-left: 5px;
+    border: 2px solid rgb(103, 164, 235);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.8em;
+    text-align: center;
+    font-family: "Jersey 10", sans-serif;
+}
+
+#tabela-ranking::-webkit-scrollbar {
+    width: 10px;
+}
+
+#tabela-ranking::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#tabela-ranking::-webkit-scrollbar-thumb {
+    background: rgb(103, 164, 235);
+    border-radius: 10px;
+}
+
+#selecao-arma {
+    position: absolute;
+    top: -2%;
+    right: -10%;
+    width: 120%;
+    height: 107%;
+    background-color: #000000ce;
+}
+
+.todo-o-player {
+    position: absolute;
+    top: 36%;
+    right: 10%;
+    width: 84%;
+}
+
+.reposicionar-player1-selecao-arma {
+    position: absolute;
+    top:24%;
+    right: 10%;
+    width: 100%;
+}
+
+.reposicionar-player2-selecao-arma {
+    position: absolute;
+    top: 24%;
+    right: -10%;
+    width: 100%;
+}
+
+.player-1 {
+    grid-area: selecao-1;
+}
+
+.player-2 {
+    grid-area: selecao-2;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    font-size: 1.7em;
+    text-align: center;
+    grid-area: header;
+}
+
+header h1 {
+    color: #ffd700;
+}
+
+#selecao-arma h1 {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.selecao {
+    position: relative;
+    color: white;
+    font-size: 2.4em;
+    text-align: center;
+    background-color: black;
+    margin: 0 10px;
+    border: 3px solid rgb(103, 164, 235);
+    border-radius: 20px;
+}
+
+.selecao input {
+    border: 1px solid rgb(2, 84, 179);
+    border-radius: 100px;
+    padding: 6px;
+    background: none;
+    font-size: 0.7em;
+    color: white;
+    font-size: 1.1em;
+    font-family: "Jersey 10", sans-serif;
+}
+
+.cubo-img-menu {
+    position: relative;
+    margin-top: 30%;
+    width: 46%;
+    z-index: 999;
+}
+
+.acessorio {
+    position: absolute;
+    display: none;
+    z-index: 999;
+}
+
+.roupa-mago {
+    width: 49%;
+    top: 80%;
+    right: 25%;
+}
+
+.roupa-rei {
+    width: 49%;
+    top: 78%;
+    right: 25%;
+}
+
+.roupa-paleto {
+    width: 48%;
+    top: 79%;
+    right: 26%;
+}
+
+.roupa-cowboy {
+    width: 49%;
+    top: 78%;
+    right: 26%;
+}
+
+.chapeu-mago {
+    right: 29%;
+    width: 43%;
+    top: 0%;
+}
+
+.chapeu-paleto {
+    right: 27%;
+    width: 47%;
+    top: 5%;
+}
+
+.chapeu-cowboy {
+    right: 21%;
+    width: 58%;
+    top: 7%;
+}
+
+.chapeu-coroa {
+    right: 23%;
+    width: 53%;
+    top: 7%;
+}
+
+.cara {
+    right: 29%;
+    top: 43%;
+    width: 41%;
+}
+
+.arma-luva {
+    top: 66%;
+    right: 11%;
+    width: 30%;
+}
+
+.arma-lanca {
+    top: 63%;
+    right: -18%;
+    width: 61%;
+}
+
+.arma-marreta {
+    top: 40%;
+    right: 3%;
+    width: 37%;
+}
+
+.arma-espada {
+    top: 54%;
+    right: 5%;
+    width: 34%;
+}
+
+.habilitar {
+    display: block;
+}
+
+.desabilitado {
+    display: none;
+}
+
+.botao {
+    border: none;
+    background: none;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.09s ease;
+}
+
+.botao:hover {
+    transform: scale(1.1);
+}
+
+.botao:active {
+    transform: scale(0.9);
+}
+
+.botao-acessorio {
+    width: 20%;
+    height: 10%;
+}
+
+.passar {
+    background-image: url("imgs/seta-amarela-direita.png");
+}
+
+.voltar {
+    background-image: url("imgs/seta-amarela-esquerda.png");
+}
+
+.botao-roupa.passar {
+    top: 76%;
+    right: 7%;
+}
+
+.botao-roupa.voltar {
+    top: 76%;
+    right: 78%;
+}
+
+.botao-chapeu.passar {
+    top: 41%;
+    right: 7%;
+}
+
+.botao-chapeu.voltar {
+    top: 41%;
+    right: 77%;
+}
+
+.botao-cara.passar {
+    top: 61%;
+    right: 7%;
+}
+
+.botao-cara.voltar {
+    top: 60%;
+    right: 78%;
+}
+
+.botao-arma.passar {
+    top: 86%;
+    right: 18%;
+}
+
+.botao-arma.voltar {
+    top: 86%;
+    right: 58%;
+}
+
+#botao-fight {
+    background-image: url(imgs/botao-fight.png);
+    width: 15%;
+    height: 9%;
+    top: 91%;
+    right: 43%;
+}
+
+#botao-fechar {
+    background-image: url(imgs/botao-fechar-selecao-arma.png);
+    width: 5%;
+    height: 6%;
+    top: 6%;
+    right: 4%;
+    z-index: 99999999;
+}
+
+#botao-pronto {
+    background-image: url(imgs/botao-pronto.png);
+    width: 12%;
+    height: 8%;
+    top: 87%;
+    right: 44%;
+}
+
+#botao-jogar {
+    background-image: url(imgs/botao-jogar.png);
+    top: 40%;
+    right: 43.3%;
+    width: 12.5%;
+    height: 9.4%;
+}
+
+#botao-controles {
+    background-image: url(imgs/botao-controles.png);
+    top: 54%;
+    right: 42.7%;
+    width: 13.7%;
+    height: 10.6%;
+}
+
+#botao-controles-player-1 {
+    background-image: url(imgs/botao-player1.png);
+    height: 10%;
+    max-height: 10%;
+    width: 14%;
+    top: 31%;
+    right: 44%;
+}
+
+#botao-controles-player-2 {
+    background-image: url(imgs/botao-player2.png);
+    height: 10%;
+    max-height: 10%;
+    width: 14%;
+    top: 48%;
+    right: 44%;
+}
+
+#botao-controles-ataque {
+    background-image: url(imgs/botao-controles-ataque.png);
+    height: 13%;
+    width: 16%;
+    top: 32%;
+    right: 43.26%;
+}
+
+#botao-controles-movimento {
+    background-image: url(imgs/botao-controles-movimento.png);
+    height: 10.74%;
+    width: 15.5%;
+    top: 51%;
+    right: 43.5%;
+}
+
+.botao-alterar-controles {
+    height: 12.74%;
+    width: 15.5%;
+    right: 43.5%;
+}
+
+#botao-controles-alterar-tecla-atacar {
+    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);
+    top: 30%;
+}
+
+#botao-controles-alterar-tecla-dash {
+    background-image: url(imgs/botao-controles-movimento.png);/*MUDAR DEPOIS*/
+    top: 60%;
+}
+
+#botao-controles-alterar-tecla-arremesso {
+    background-image: url(imgs/botao-controles-movimento.png);/*MUDAR DEPOIS*/
+    top: 45%;
+}
+
+#botao-controles-confirmar {
+    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
+    height: 10%;
+    width: 10%;
+    top: 55%;
+    right: 44%;
+}
+
+
+#botao-menu-principal-voltar {
+    top: 3%;
+    right: 89%;
+    width: 10%;
+    height: 10%;
+}
+
+.botao-alterar-controles {
+    height: 10%;
+    width: 10%;
+    right: 44%;
+}
+
+#botao-controles-alterar-tecla-cima {
+    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
+    top: 52%;
+}
+
+#botao-controles-alterar-tecla-direita {
+    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
+    top: 65%;
+}
+
+#botao-controles-alterar-tecla-esquerda {
+    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
+    top: 39%;
+}
+
+#botao-controles-alterar-tecla-baixo {
+    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
+    top: 26%;
+}
+
+.container-texto {
+    position: absolute;
+    font-size: 1em;
+    background-color: #000000ce;
+    width: 119%;
+    height: 106%;
+    right: -10%;
+    z-index: 99999;
+    
+}
+
+.texto {
+    margin: 5% 21%;
+    color: white;
+    font-size: 2.4em;
+    text-align: center;
+    background-color: black;
+    border: 3px solid rgb(103, 164, 235);
+    border-radius: 20px;
+    height: 73%;
+    width: 43%;
+}
+
+.texto p {
+    text-align: justify;
+    margin: 0% 0% 14% 27%;
+    padding-top: 5%;
+}
+
+#menu-principal {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-areas: 
+    "esquerda header direita"
+    "esquerda opcoes direita"
+    "esquerda footer direita";
+    background-image: url(imgs/fundoMenu.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#opcoes-menu-principal #titulo-opcoes-menu-principal {
+    margin: 3% 0% 0% 0%;
+    font-size: 2em;
+}
+
+#opcoes-menu-principal {
+    grid-area: opcoes;
+    background-color: rgba(6, 6, 20, 0.7);
+    border: 2px solid rgb(10, 5, 37);
+    width: 100%;
+    height: 100%;
+    margin: 3% 0% 0% 0%;
+    font-size: 3em;
+}
+
+#container-controles {
+    height: 73%;
+    width: 43%;
+    margin: 4% 0% 0% 27.5%;
+    font-size: 5em;
+}
+
+#container-controles-opcoes {
+    height: 73%;
+    width: 43%;
+    margin: 4% 0% 0% 27.5%;
+    font-size: 3em;
+}
+
+#container-controles-alterar-ataque {
+    margin: 5% 0% 0% 27.4%;
+}
+
+#container-controles h2 {
+    margin: 8% 0% 0% 0%;
+}
+
+#container-controles-alterar-ataque h2 {
+    font-size: 2.3em;
+    margin: 6% 0% 0% 0%;
+}
+
+#container-controles-informar-tecla {
+    width: 43%;
+    margin: 5% 0% 0% 29%;
+    font-size: 4em;
+}
+
+#container-controles-informar-tecla h2 {
+    margin: 10% 0% 0% 0%;
+}
+
+#container-controles-informar-tecla p {
+    margin: 5% 0% 0% 39.9%;
+    font-size: 1.5em;
+    color: #ffd700;
+}
+
+#container-controles-alterar-movimento {
+    width: 50%;
+    height: 76%;
+    margin: 4% 0% 0% 25%;
+    font-size: 3em;
+}
+
+#menu-principal h2 {
+    color: white;
+    font-size: 5em;
+    margin: 10% 0% 0% 0%;
+}
+
+
+
+@media (min-height: 901px) and (max-height: 1040px) { /*Tela não cheia em 1920 x 1080*/
+    #botao-fechar {
+        right: 6%;
+    }
+
+    .reposicionar-player1-selecao-arma {
+        position: absolute;
+        top: 24%;
+        right: 22%;
+        width: 100%;
+    }
+
+    .reposicionar-player2-selecao-arma {
+        right: -10%;
+    }
+
+    #botao-pronto {
+        background-image: url(imgs/botao-pronto.png);
+        width: 12%;
+        height: 8%;
+        top: 86%;
+        right: 43.6%;
+    }
+
+    #selecao-arma {
+        position: absolute;
+        top: -2%;
+        right: -13%;
+        width: 131%;
+        height: 107%;
+        background-color: #000000ce;
+    }
+ 
+    #selecao-arma h1 {
+        margin: 2% 0% 0% 0%;
+    }
+
+    #menu-principal {
+        width: 153%;
+        height: 100%;
+        right: -25%;
+        top: 2%;
+    }
+
+    #botao-jogar {
+        right: 45%;
+        top: 45%;
+        width: 10%;
+        height: 10%;
+    }
+
+    #botao-controles {
+        right: 45%;
+        top: 61%;
+        width: 10%;
+        height: 10%;
+    }
+
+    #container-boosts {
+        width: 126%;
+        height: 38%;
+        top: 1%;
+        right: -13%;
+    }
+
+    #controles-aba-player {
+        width: 128%;
+        right: -14%;
+    }
+}
+
+#container-boosts {
+    text-align: center;
+    font-size: 2.6em;
+    width:22%;
+    height: 38%;
+    top: 1%;
+    right: 1%;
+    background-color: rgba(84, 158, 255, 0.719);
+    border: 3px solid blue;
+    border-radius: 10px;
+    color: white;
+}
+
+
+@media (min-height: 770px) and (max-height: 945px) and (min-width: 1800px) { /*Tela não cheia em 1440 x 900*/
+    #botao-fechar {
+        right: 3%;
+    }
+
+    .container-selecao {
+        min-height: 112dvh;
+        margin: 0% 0% 0% 4%;
+    }
+
+    #botao-menu-principal-voltar {
+        top: 3%;
+        right: 97%;
+        width: 10%;
+        height: 10%;
+    }
+
+    #botao-fight {
+        top: 90%;
+        right: 44.5%;
+    }
+
+    .selecao {
+        right: 9%;
+        margin: 0% 3% 20% 10%;
+    }
+
+    #selecao-arma {
+        width: 138%;
+        right: -22.3%;
+    }
+
+    .reposicionar-player1-selecao-arma {
+        top: 15%;
+        right: 25%;
+    }
+
+    .reposicionar-player2-selecao-arma {
+        top: 15%;
+        right: -25.5%;
+    }
+
+    #botao-pronto {
+        top: 75%;
+        right: 47%;
+    }
+
+    #selecao-arma h1 {
+        margin: 2% 6% 0% 0%;
+    }
+
+    header h1 {
+        margin: 3% 7% 0% 0%;
+    }
+
+    .botao-arma.voltar {
+        right: 63%;
+    }
+}
+
+
+
+@media (min-height: 1000px) and (max-height: 1100px) { /*Tela cheia 1920 x 1080*/
+    #selecao-arma {
+        position: absolute;
+        top: -2%;
+        right: -20.4%;
+        width: 131%;
+        height: 107%;
+        background-color: #000000ce;
+    }
+
+    #selecao-arma h1 {
+        margin: 3% 7% 0% 0%;
+    }
+
+    #botao-fechar {
+        top: 6%;
+        right: -1%;
+    }
+
+    #botao-menu-principal-voltar {
+        top: 5%;
+        right: 94%;
+        width: 10%;
+        height: 10%;
+    }
+
+    #botao-pronto {
+        top: 77%;
+        right: 48.49%;
+    }
+
+    .reposicionar-player1-selecao-arma {
+        position: absolute;
+        top: 20%;
+        right: 17.5%;
+        width: 100%;
+    }
+
+    .reposicionar-player2-selecao-arma {
+        position: absolute;
+        top: 20%;
+        right: -16.5%;
+        width: 100%;
+    }
+}
+
+@media (min-height: 930px) and (max-height: 1010px) and (max-width: 1600px) { /*BUG DOS 1000 PIXELS*/
+    .selecao {
+        margin-bottom: 15%;
+        right: 9%;
+    }
+
+    #botao-fight {
+        top: 87%;
+        right: 46%;
+    }
+
+    #botao-menu-principal-voltar {
+        top: 3%;
+        right: 93%;
+        width: 10%;
+        height: 10%;
+    }
+
+    #selecao-arma {
+        width: 120%;
+        right: -11%;
+    }
+
+    .reposicionar-player1-selecao-arma {
+        top: 15%;
+        right: 7%;
+    }
+
+    .reposicionar-player2-selecao-arma {
+        top: 15%;
+        right: -14%;
+    }
+    
+    #botao-pronto {
+        top: 79%;
+        right: 46.8%;
+        width: 13%;
+    }
+
+    header h1 {
+        margin-right: 6.4%;
+    }
+
+    #botao-fechar {
+        right: 5%;
+    }
+
+    #controles-aba-player {
+        top: -3%;
+    }
+    
+    #container-controles {
+        margin-top: 6%;
+    }
+
+    #botao-controles-player-2 {
+        top: 57%;
+    }
+
+    #botao-controles-player-1 {
+        top: 38%;
+    }
+}
+
+
+
+/* ajustes pra resolução */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    
+}
+
+#wrapper {
+    position: fixed;
+    top: 46%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+#fixed-container {
+    width: 1440px;
+    height: 900px;
+    transform-origin: top left;
+    transform: scale(var(--scale));
+}
+
+/* tela normal 1440x900 */
+@media (max-height: 900px) {
+    #wrapper {
+        top: 56%;
+        left: 56%;
+    }
+
+    .roupa-cowboy {
+        width: 49%;
+        top: 80%;
+        right: 25%;
+    }
+}
+
+/* tela cheia 1440x900 */
+@media (max-height: 869px) and (min-height: 820px) {
+    #wrapper {
+        top: 52%;
+        left: 52%;
+    }
+}
+
+/* tela cheia 1440x900 */
+@media (max-height: 900px) and (min-height: 870px) {
+    #wrapper {
+        top: 49%;
+        left: 50%;
+    }
+
+    .roupa-cowboy {
+        width: 49%;
+        top: 80%;
+        right: 26%;
+    }
+}
+
+/* FULLSCREEN 1920x1080 */
+@media screen and (min-width: 1900px) and (max-width: 1950px)
+       and (min-height: 970px) and (max-height: 1100px) {
+
+    #wrapper {
+        position: fixed;
+        top: 39%;
+        left: 43%;
+        transform: translate(-50%, -50%);
+    }
+
+    #fixed-container {
+        width: 1440px;
+        height: 900px;
+        transform-origin: top left;
+    }
+
+    .selecao {
+        width: 500px;
+        height: 660px;
+    }
+}

@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+html, body {
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    zoom: 100%;
+    position: relative;
+}
+
+canvas {
+    position: relative;
+    z-index: 1;
+}
+
+#conteiner-vitoria{
+    position: fixed;
+    background-color: rgba(3, 3, 27, 0.5); 
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: none;
+}
+
+#tela-vitoria{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    border-radius: 14px;
+    background-color: rgb(13, 13, 49);
+    padding-bottom: 5%;
+    overflow: hidden;
+}
+
+h1{
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 5.5vw;
+    font-family: "Jersey 10";
+    width: 100%;
+    height: 20%;
+    color: yellow;
+    text-shadow: 2px 4px 2px black;
+}
+
+#conteudo-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0%;
+    width: 100%;
+    height: 80%;
+}
+
+h2 {
+    margin: 0 0;
+    font-family: sans-serif;
+}
+
+#player-vencedor {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    height: 400px;
+}
+
+#imagem-player {
+    width: 450px;
+    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imagem-player img {
+    height: auto;
+    box-sizing: border-box;
+}
+
+#cubo-vencedor {
+    position: absolute;
+    width: 35%;
+}
+
+#status-vitoria {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    margin-bottom: 10%;
+    font-family: "Jersey 10";
+    font-size: 1.5vw;
+}
+
+#status-vitoria input {
+  background-color: transparent;
+  font-family: "Jersey 10";
+  font-size: 1.5vw;;
+  color: greenyellow;
+  outline: none;
+  border: none;
+}
+
+.roupa-mago, .roupa-rei, .roupa-paleto, .roupa-cowboy {
+    position: absolute;
+    left: 50%;
+    width: 39%;
+    height: 30%;
+    top: 59%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 13;
+    object-fit: contain;
+    z-index: 20;
+}
+
+.roupa-mago {
+    top: 61%;
+}
+
+.roupa-rei {
+    top: 58%;
+}
+
+.chapeu-mago {
+    position: absolute;
+    top: -4%;
+    width: 40%;
+
+    z-index: 15;
+}
+
+.chapeu-paleto {
+    position: absolute;
+    top: 3%;
+    width: 40%;
+
+    z-index: 15;
+}
+
+.chapeu-cowboy {
+    position: absolute;
+    top: 9%;
+    width: 42%;
+
+    z-index: 15;
+}
+
+.chapeu-rei {
+    position: absolute;
+    top: 8%;
+    width: 41%;
+
+    z-index: 15;
+}
+
+.cara {
+    position: absolute;
+    right: 33%;
+    top: 30%;
+    width: 41%;
+
+    z-index: 5;
+}
+
+
+#btn-rejogar {
+    background-image: url(../imgs/imgRejogar.png);
+    left: 0%;
+}
+
+#btn-voltar-menu {
+    background-image: url(../imgs/imgVoltarMenu.png);
+    right: 0%;
+}
+
+#btn-rejogar, #btn-voltar-menu {
+    position: absolute;
+    transition: all 0.2s ease;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    top: 0%;
+    margin-top: 1%;
+    width: 10%;
+    height: 10%;
+}
+
+.botaoDestacado {
+    transform: scale(1.2);
+}
+
+#legenda-rejogar, #legenda-voltar-menu{
+    display: none;
+    position: absolute;
+    top: 3%;
+    font-family: "Jersey 10";
+    color: greenyellow;
+    font-size: 1.3vw;
+} 
+
+#legenda-rejogar {
+    left: 0%;
+}
+
+#legenda-voltar-menu {
+    right: 0%;
+}
