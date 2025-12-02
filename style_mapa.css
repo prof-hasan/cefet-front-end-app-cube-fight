@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+body {
+    background-image: url('./imgs/FundoSelecMapas1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#menu-mapas{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-areas: 
+            "header header header"
+            "menu menu menu"
+            "footer footer footer";
+    min-height: 100vh;
+}
+
+header {
+    grid-area: header;
+    font-size: 1.4vw;
+    text-align: center;
+    color: #ffd700;
+    font-family: 'Jersey 10';
+    text-shadow: 2px 4px 2px black;
+}
+
+#selecao-mapas {
+    grid-area: menu;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto; margin-right: auto;
+    padding-right: 5%; padding-left: 5%;
+    background-color: rgb(9, 1, 29);
+    border-radius: 15px;
+}
+
+.mapa-link {
+    text-align: center;
+    height: auto;
+    max-width: 22%;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 15px;
+    overflow: visible;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: transform 0.9s ease;
+}
+
+.mapa-imagem-container {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.mapa-imagem-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%;
+    margin-left: auto; margin-right: auto;
+    object-fit: cover;
+}
+
+
+.nome-mapa, .legenda-mapa {
+    color: white;
+    font-family: 'Jersey 10';
+    font-size: 1.3vw;
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    opacity: 0;
+    transition: all 1.3s ease;
+    padding: 10px;
+    box-sizing: border-box;
+    width: auto;
+    white-space: nowrap;
+    height: 60px;
+    min-height: 40px;
+}
+
+.nome-mapa {
+    top: 0;
+    transform: translate(-50%, -100%);
+}
+
+.legenda-mapa {
+    bottom: 0;
+    transform: translate(-50%, 100%);
+
+}
+
+.mapa-link:hover .nome-mapa{
+    transform: translate(-50%, -150%);
+    opacity: 1;
+}
+
+.mapa-link:hover .legenda-mapa {
+    transform: translate(-50%, 150%);
+    opacity: 1;
+}
+
+.destaquePrimavera {
+    border: 2px solid #FF6B00;
+    box-shadow: 2px 2px 5px #FF6B00;
+    transform: scale(1.3);
+}
+
+.destaqueLuar {
+    border: 2px solid #191970;
+    box-shadow: 2px 2px 5px #191970;
+    transform: scale(1.3);
+}
+
+.destaqueNeve {
+    border: 2px solid #6495ED;
+    box-shadow: 2px 2px 5px #6495ED;
+    transform: scale(1.3);
+}
+
+.destaqueSecundario {
+    transform: scale(0.75);
+}
