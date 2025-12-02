@@ -16,6 +16,8 @@ let botaoFecharEl = document.querySelector("#botao-fechar"); //Guarda o botão d
 let botaoProntoEl = document.querySelector("#botao-pronto"); // Guarda o botão pronto
 let botaoJogarEl = document.querySelector("#botao-jogar"); //Guarda o botão de jogar
 let botaoControlesEl = document.querySelector("#botao-controles"); //Guarda o botão de acessar os controles
+let botaoRankingEl = document.querySelector("#botao-ranking");
+let botaoFecharRankingEl = document.querySelector("#botao-fechar-ranking");
 let botaoMenuPrincipalVoltarEl = document.querySelector("#botao-menu-principal-voltar");//Guarda o botão de voltar para o menu principal
 let botaoControlesPlayerEl = document.querySelectorAll(".botao-controles-player");//Guarda os botões de seleção de player na troca de teclas
 let botaoOpcoesControlesAtaqueEl = document.querySelector("#botao-controles-ataque"); //Guarda o botão de acessar a mudança de teclas de ataque
@@ -28,6 +30,7 @@ let totalDeCaras = carasEl.length;
 let totalDeRoupas = roupasEl.length;
 let totalDeArmas = armasEl.length;
 
+let containerRankingEl = document.querySelector("#container-ranking");
 let containerSelecaoArmasEl = document.querySelector("#selecao-arma"); // Guarda o container da seleção de armas
 let containersTodoOPlayerEl = document.querySelectorAll(".todo-o-player"); // Guarda o container das imagens dos players
 let containerBoostsEl = document.querySelector("#container-boosts"); // Guarda o container que tem o texto dos boosts
@@ -537,6 +540,14 @@ function apareceSelecaoDeArma() { //Função para fazer aparecer o container da 
 
 }
 
+function apareceRanking() {
+    containerRankingEl.style.display = "block";
+}
+
+function fecharRanking() {
+    containerRankingEl.style.display = "none";
+}
+
 function apareceSelecaoDeAcessorios() {
     containerMenuPrincipalEl.style.display = "none"; //não usei a classe desabilitado por causa da prioridade
 }
@@ -888,7 +899,9 @@ botoesArmaEl.forEach((elementoAtual) => elementoAtual.addEventListener('click', 
 
 botaoJogarEl.addEventListener('click', apareceSelecaoDeAcessorios);
 botaoControlesEl.addEventListener('click', apareceSelecaoDosControles);
+botaoRankingEl.addEventListener('click', apareceRanking);
 botaoFightEl.addEventListener('click', apareceSelecaoDeArma);
+botaoFecharRankingEl.addEventListener('click', fecharRanking);
 botaoFecharEl.addEventListener('click', FecharAba);
 botaoProntoEl.addEventListener('click', comecarJogo);
 botaoMenuPrincipalVoltarEl.addEventListener('click', voltarParaOMenuPrincipal);

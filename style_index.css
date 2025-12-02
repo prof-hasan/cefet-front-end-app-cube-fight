@@ -376,18 +376,44 @@ header h1 {
 
 #botao-jogar {
     background-image: url(imgs/botao-jogar.png);
-    top: 40%;
+    top: 37%;
     right: 43.3%;
     width: 12.5%;
     height: 9.4%;
 }
 
+#botao-ranking {
+    background-image: url(imgs/botao-ranking.png);
+    width: 14%;
+    right: 42.5%;
+    top: 58.5%;
+    height: 9.4%;
+}
+
+#botao-biohazard {
+    background-image: url(imgs/botao-biohazard.png);
+    width: 14%;
+    right: 42.5%;
+    top: 69%;
+    height: 9.4%;
+}
+
 #botao-controles {
     background-image: url(imgs/botao-controles.png);
-    top: 54%;
+    top: 47%;
     right: 42.7%;
     width: 13.7%;
     height: 10.6%;
+}
+
+#botao-fechar-ranking {
+    background-image: url(imgs/botao-fechar-selecao-arma.png);
+    position: absolute;
+    width: 5%;
+    height: 6%;
+    top: 6%;
+    right: 3%;
+    z-index: 99999999;
 }
 
 #botao-controles-player-1 {
@@ -648,14 +674,28 @@ header h1 {
 
     #botao-jogar {
         right: 45%;
-        top: 45%;
+        top: 41.2%;
+        width: 10%;
+        height: 10%;
+    }
+
+    #botao-ranking {
+        right: 45%;
+        top: 73.4%;
+        width: 10%;
+        height: 10%;
+    }
+
+    #botao-biohazard {
+        right: 45%;
+        top: 62.8%;
         width: 10%;
         height: 10%;
     }
 
     #botao-controles {
         right: 45%;
-        top: 61%;
+        top: 52%;
         width: 10%;
         height: 10%;
     }
@@ -761,6 +801,10 @@ header h1 {
 
     #selecao-arma h1 {
         margin: 3% 7% 0% 0%;
+    }
+
+    #botao-fechar-ranking {
+        right: 10%;
     }
 
     #botao-fechar {
