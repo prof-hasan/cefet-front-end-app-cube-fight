@@ -107,6 +107,10 @@ header {
     opacity: 1;
 }
 
+.mapa-link:active {
+    transform: scale(1.0);
+}
+
 .destaquePrimavera {
     border: 2px solid #FF6B00;
     box-shadow: 2px 2px 5px #FF6B00;
@@ -127,4 +131,27 @@ header {
 
 .destaqueSecundario {
     transform: scale(0.75);
+}
+
+#botao-menu-principal-voltar {
+    border: none;
+    background: none;
+    position: absolute;
+    background-image: url(imgs/seta-amarela-esquerda.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.09s ease;
+    top: 2%;
+    left: 1%;
+    padding: 1px 6px 1px 6px;
+    width: 7.93%;
+    height: 10%;
+}
+
+#botao-menu-principal-voltar:hover {
+    transform: scale(1.1);
+}
+
+#botao-menu-principal-voltar:active {
+    transform: scale(0.9);
 }
