@@ -34,9 +34,17 @@ header {
     transition: all 0.09s ease;
     top: 2%;
     left: 1%;
-    padding: 0%;
-    width: 10%;
+    padding: 1px 6px 1px 6px;
+    width: 7.9%;
     height: 10%;
+}
+
+#botao-menu-principal-voltar:hover {
+    transform: scale(1.1);
+}
+
+#botao-menu-principal-voltar:active {
+    transform: scale(0.9);
 }
 
 h1 {
@@ -89,7 +97,7 @@ li::marker {
 #itens-opcionais div {
     display: flex;
     justify-content: space-around;
-    gap: 5%;
+    gap: 2%;
     align-items: center;
 }
 
@@ -113,6 +121,12 @@ footer {
     height: 15vh;
     font-family: sans-serif;
     padding: 1% 0 0 1%;
+    display: flex;
+}
+
+footer p {
+    margin: auto;
+    align-self: center;
 }
 
 .efeito-titulo-section, .efeito-img-colaboradores, .efeito-nome-colaboradores,

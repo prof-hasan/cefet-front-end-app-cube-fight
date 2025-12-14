@@ -28,8 +28,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: rgb(0, 0, 0, 0.8);
-    z-index: 999999999;
-    display: none;
+    z-index: 999999;
 }
 
 #tabela-ranking {
@@ -38,7 +37,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 20, 0.85);
-    padding: 20px 30px;
+    padding: 0px 30px 20px 30px;
     border-radius: 20px;
     border: 3px solid rgb(103, 164, 235);
     font-family: "Jersey 10", sans-serif;
@@ -80,7 +79,6 @@ body {
     width: 90%;
     padding: 5px;
     margin-right: 5px; margin-left: 5px;
-    border: 2px solid rgb(103, 164, 235);
     background: rgba(0, 0, 0, 0.7);
     color: #fff;
     border-radius: 10px;
@@ -376,34 +374,34 @@ header h1 {
 
 #botao-jogar {
     background-image: url(imgs/botao-jogar.png);
-    top: 37%;
-    right: 43.3%;
-    width: 12.5%;
-    height: 9.4%;
+    top: 36.8%;
+    right: 42.8%;
+    width: 13.5%;
+    height: 11%;
 }
 
 #botao-ranking {
     background-image: url(imgs/botao-ranking.png);
-    width: 14%;
-    right: 42.5%;
-    top: 58.5%;
-    height: 9.4%;
+    width: 13.7%;
+    right: 42.7%;
+    top: 73.5%;
+    height: 11%;
 }
 
 #botao-biohazard {
     background-image: url(imgs/botao-biohazard.png);
-    width: 14%;
-    right: 42.5%;
-    top: 69%;
-    height: 9.4%;
+    width: 13.7%;
+    right: 42.7%;
+    top: 61%;
+    height: 11%;
 }
 
 #botao-controles {
     background-image: url(imgs/botao-controles.png);
-    top: 47%;
+    top: 48.7%;
     right: 42.7%;
     width: 13.7%;
-    height: 10.6%;
+    height: 11%;
 }
 
 #botao-fechar-ranking {
@@ -462,19 +460,19 @@ header h1 {
 }
 
 #botao-controles-alterar-tecla-dash {
-    background-image: url(imgs/botao-controles-movimento.png);/*MUDAR DEPOIS*/
-    top: 60%;
-}
-
-#botao-controles-alterar-tecla-arremesso {
-    background-image: url(imgs/botao-controles-movimento.png);/*MUDAR DEPOIS*/
+    background-image: url(imgs/botao-controles-alterar-tecla-dash.png);
     top: 45%;
 }
 
+#botao-controles-alterar-tecla-arremesso {
+    background-image: url(imgs/botao-controles-alterar-tecla-arremesso.png);
+    top: 60%;
+}
+
 #botao-controles-confirmar {
-    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
+    background-image: url(imgs/botao-controles-alterar-tecla-confirmar.png);
+    width: 12%;
     height: 10%;
-    width: 10%;
     top: 55%;
     right: 44%;
 }
@@ -489,28 +487,28 @@ header h1 {
 
 .botao-alterar-controles {
     height: 10%;
-    width: 10%;
-    right: 44%;
+    width: 12%;
+    right: 44.57%;
 }
 
 #botao-controles-alterar-tecla-cima {
-    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
-    top: 52%;
+    background-image: url(imgs/botao-controles-alterar-tecla-cima.png);
+    top: 26%;
 }
 
 #botao-controles-alterar-tecla-direita {
-    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
-    top: 65%;
-}
-
-#botao-controles-alterar-tecla-esquerda {
-    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
+    background-image: url(imgs/botao-controles-alterar-tecla-direita.png);
     top: 39%;
 }
 
+#botao-controles-alterar-tecla-esquerda {
+    background-image: url(imgs/botao-controles-alterar-tecla-esquerda.png);
+    top: 52%;
+}
+
 #botao-controles-alterar-tecla-baixo {
-    background-image: url(imgs/botao-controles-alterar-tecla-atacar.png);/*MUDAR DEPOIS*/
-    top: 26%;
+    background-image: url(imgs/botao-controles-alterar-tecla-baixo.png);
+    top: 65%;
 }
 
 .container-texto {
@@ -565,7 +563,7 @@ header h1 {
     background-color: rgba(6, 6, 20, 0.7);
     border: 2px solid rgb(10, 5, 37);
     width: 100%;
-    height: 100%;
+    height: 110%;
     margin: 3% 0% 0% 0%;
     font-size: 3em;
 }
@@ -630,18 +628,18 @@ header h1 {
 
 @media (min-height: 901px) and (max-height: 1040px) { /*Tela não cheia em 1920 x 1080*/
     #botao-fechar {
-        right: 6%;
+        right: -8%;
     }
 
     .reposicionar-player1-selecao-arma {
         position: absolute;
         top: 24%;
-        right: 22%;
+        right: 14.3%;
         width: 100%;
     }
 
     .reposicionar-player2-selecao-arma {
-        right: -10%;
+        right: -18.8%;
     }
 
     #botao-pronto {
@@ -655,7 +653,7 @@ header h1 {
     #selecao-arma {
         position: absolute;
         top: -2%;
-        right: -13%;
+        right: -15.48%;
         width: 131%;
         height: 107%;
         background-color: #000000ce;
@@ -667,37 +665,37 @@ header h1 {
 
     #menu-principal {
         width: 153%;
-        height: 100%;
-        right: -25%;
-        top: 2%;
+        height: 104%;
+        right: -26.3%;
+        top: -2%;
     }
 
     #botao-jogar {
         right: 45%;
-        top: 41.2%;
-        width: 10%;
-        height: 10%;
+        top: 43.2%;
+        width: 10.15%;
+        height: 11%;
     }
 
     #botao-ranking {
         right: 45%;
-        top: 73.4%;
-        width: 10%;
-        height: 10%;
+        top: 80.4%;
+        width: 10.15%;
+        height: 11%;
     }
 
     #botao-biohazard {
         right: 45%;
-        top: 62.8%;
-        width: 10%;
-        height: 10%;
+        top: 68%;
+        width: 10.15%;
+        height: 11%;
     }
 
     #botao-controles {
         right: 45%;
-        top: 52%;
-        width: 10%;
-        height: 10%;
+        top: 55.6%;
+        width: 10.15%;
+        height: 11%;
     }
 
     #container-boosts {
@@ -710,6 +708,18 @@ header h1 {
     #controles-aba-player {
         width: 128%;
         right: -14%;
+    }
+
+    #botao-menu-principal-voltar {
+        right: 104%;
+    }
+
+    #botao-fight {
+        right: 42.5%;
+    }
+
+    #opcoes-menu-principal {
+        height: 122%;
     }
 }
 
@@ -727,7 +737,7 @@ header h1 {
 }
 
 
-@media (min-height: 770px) and (max-height: 945px) and (min-width: 1800px) { /*Tela não cheia em 1440 x 900*/
+@media (min-height: 770px) and (max-height: 899px) and (max-width: 1800px) { /*Tela não cheia em 1440 x 900*/
     #botao-fechar {
         right: 3%;
     }
@@ -789,7 +799,7 @@ header h1 {
 
 
 
-@media (min-height: 1000px) and (max-height: 1100px) { /*Tela cheia 1920 x 1080*/
+@media (min-height: 1000px) and (max-height: 1100px) { /*Tela cheia 1920 x 1080*/  
     #selecao-arma {
         position: absolute;
         top: -2%;
@@ -800,12 +810,9 @@ header h1 {
     }
 
     #selecao-arma h1 {
-        margin: 3% 7% 0% 0%;
+        margin: 3% 8.8% 0% 0%;
     }
-
-    #botao-fechar-ranking {
-        right: 10%;
-    }
+    
 
     #botao-fechar {
         top: 6%;
@@ -821,7 +828,7 @@ header h1 {
 
     #botao-pronto {
         top: 77%;
-        right: 48.49%;
+        right: 48.4%;
     }
 
     .reposicionar-player1-selecao-arma {
@@ -836,6 +843,22 @@ header h1 {
         top: 20%;
         right: -16.5%;
         width: 100%;
+    }
+
+    header h1 {
+        margin: 4% 0% 0% -1%;
+    }
+
+    .botao-arma.voltar {
+        right: 67%;
+    }
+
+    .botao-arma.passar {
+        right: 12%;
+    }
+
+    #menu-principal {
+        right: -8.5%;
     }
 }
 

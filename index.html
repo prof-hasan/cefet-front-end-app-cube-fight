@@ -25,16 +25,13 @@
                 <!--Opcões menu-->
                 <div class="texto" id="opcoes-menu-principal">
                     <h2 id="titulo-opcoes-menu-principal">Opções:</h2>
-                    <button class="botao" id="botao-jogar"></button> <!--Botão jogar-->
-                    <button class="botao" id="botao-controles"></button>
-                    <button class="botao" id="botao-ranking"></button>
-                    <a href="itens_opcionais.html">
-                        <button class="botao" id="botao-biohazard"></button>
-                    </a>
+                    <button class="botao opcao" id="botao-jogar"></button> <!--Botão jogar-->
+                    <button class="botao opcao" id="botao-controles"></button>
+                    <button class="botao opcao" id="botao-ranking"></button>
+                    <button class="botao opcao" id="botao-biohazard"></button>
                 </div>
             </div>
-            <div id="container-ranking">
-                <button class="botao" id="botao-fechar-ranking"></button>
+            <div id="container-ranking"class="aba desabilitado">
                 <div id="tabela-ranking">
                     <table>
                         <caption>RANKING DOS JOGADORES</caption>
@@ -56,9 +53,9 @@
             <div class="container-texto aba desabilitado" id="controles-aba-player">
                 <div class="texto" id="container-controles">
                     <h2>Controles</h2>
-                    <button class="botao botao-controles-player" id="botao-controles-player-1"
+                    <button class="botao opcao botao-controles-player" id="botao-controles-player-1"
                         data-teclaplayer="teclasPlayer1"></button>
-                    <button class="botao botao-controles-player" id="botao-controles-player-2"
+                    <button class="botao opcao botao-controles-player" id="botao-controles-player-2"
                         data-teclaplayer="teclasPlayer2"></button>
                 </div>
                           
@@ -68,8 +65,8 @@
             <div class="container-texto aba desabilitado" id="controles-opcoes">
                 <div class="texto" id="container-controles-opcoes">
                     <h2>Quais teclas deseja trocar?</h2>
-                    <button class="botao" id="botao-controles-ataque"></button>
-                    <button class="botao" id="botao-controles-movimento"></button>
+                    <button class="botao opcao" id="botao-controles-ataque"></button>
+                    <button class="botao opcao" id="botao-controles-movimento"></button>
                 </div>
             </div>
 
@@ -77,11 +74,11 @@
             <div class="container-texto aba desabilitado" id="controles-alterar-ataque">
                 <div class="texto" id="container-controles-alterar-ataque">
                     <h2>Mundança de tecla</h2>
-                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-atacar"
+                    <button class="botao opcao botao-alterar-controles" id="botao-controles-alterar-tecla-atacar"
                         data-tecla="ataque"></button>
-                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-arremesso"
+                    <button class="botao opcao botao-alterar-controles" id="botao-controles-alterar-tecla-arremesso"
                         data-tecla="arremesso"></button>
-                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-dash"
+                    <button class="botao opcao botao-alterar-controles" id="botao-controles-alterar-tecla-dash"
                         data-tecla="dash"></button>
                 </div>
             </div>
@@ -90,13 +87,13 @@
             <div class="container-texto aba desabilitado" id="controles-alterar-movimento">
                 <div class="texto" id="container-controles-alterar-movimento">
                     <h2>Mundança de tecla</h2>
-                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-cima"
+                    <button class="botao opcao botao-alterar-controles" id="botao-controles-alterar-tecla-cima"
                         data-tecla="cima"></button>
-                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-direita"
+                    <button class="botao opcao botao-alterar-controles" id="botao-controles-alterar-tecla-direita"
                         data-tecla="direita"></button>
-                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-esquerda"
+                    <button class="botao opcao botao-alterar-controles" id="botao-controles-alterar-tecla-esquerda"
                         data-tecla="esquerda"></button>
-                    <button class="botao botao-alterar-controles" id="botao-controles-alterar-tecla-baixo"
+                    <button class="botao opcao botao-alterar-controles" id="botao-controles-alterar-tecla-baixo"
                         data-tecla="baixo"></button>
                 </div>
             </div>
@@ -106,7 +103,7 @@
                 <div class="texto" id="container-controles-informar-tecla">
                     <h2>Pressione a tecla:</h2>
                     <p id="tecla-pressionada">KeyW</p>
-                    <button class="botao" id="botao-controles-confirmar"></button>
+                    <button class="botao opcao" id="botao-controles-confirmar"></button>
                 </div>
             </div>
 
@@ -133,13 +130,13 @@
                         <!--Imagens das caras player 1-->
                         <img src="imgs/cara-feliz.png" class="cara cara-feliz acessorio" data-set="feliz"
                             data-player="1">
-                        <img src="imgs/cara-bravo.png" class="cara cara-bravo acessorio" data-set="bravo"
+                        <img src="imgs/cara-neutro.png" class="cara cara-neutro acessorio" data-set="neutro"
                             data-player="1">
                         <img src="imgs/cara-surpreso.png" class="cara cara-surpreso acessorio" data-set="surpreso"
                             data-player="1">
-                        <img src="imgs/cara-neutro.png" class="cara cara-neutro acessorio" data-set="neutro"
+                        <img src="imgs/cara-bravo.png" class="cara cara-bravo acessorio" data-set="bravo"
                             data-player="1">
-
+                        
 
                         <!--Imagens dos chapéus player 1-->
                         <img src="imgs/chapeu-mago.png" class="chapeu chapeu-mago acessorio" data-set="mago"
@@ -154,11 +151,11 @@
                         <!--Imagens das roupas player 1-->
                         <img src="imgs/roupa-mago.png" class="roupa roupa-mago acessorio" data-set="mago"
                             data-player="1">
-                        <img src="imgs/roupa-rei.png" class="roupa roupa-rei acessorio" data-set="rei" data-player="1">
                         <img src="imgs/roupa-paleto.png" class="roupa roupa-paleto acessorio" data-set="paleto"
                             data-player="1">
                         <img src="imgs/roupa-cowboy.png" class="roupa roupa-cowboy acessorio" data-set="cowboy"
                             data-player="1">
+                        <img src="imgs/roupa-rei.png" class="roupa roupa-rei acessorio" data-set="rei" data-player="1">
 
                         <!--Imagens das armas player 1-->
                         <img src="imgs/arma-luva.png" class="arma arma-luva acessorio" data-set="luva" data-player="1">
@@ -171,17 +168,17 @@
                     </div>
 
                     <!--Botões de mudar o chapéu-->
-                    <button class="botao botao-acessorio passar botao-chapeu" id="botao-chapeu-passar-player1"></button>
-                    <button class="botao botao-acessorio voltar botao-chapeu" id="botao-chapeu-voltar-player1"></button>
+                    <button class="botao botao-acessorio passar botao-chapeu alterar" id="botao-chapeu-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-chapeu alterar" id="botao-chapeu-voltar-player1"></button>
 
                     <!--botões de mudar a cara-->
-                    <button class="botao botao-acessorio passar botao-cara" id="botao-cara-passar-player1"></button>
-                    <button class="botao botao-acessorio voltar botao-cara" id="botao-cara-voltar-player1"></button>
+                    <button class="botao botao-acessorio passar botao-cara alterar" id="botao-cara-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-cara alterar" id="botao-cara-voltar-player1"></button>
 
 
                     <!--botões de mudar a roupa-->
-                    <button class="botao botao-acessorio passar botao-roupa" id="botao-roupa-passar-player1"></button>
-                    <button class="botao botao-acessorio voltar botao-roupa" id="botao-roupa-voltar-player1"></button>
+                    <button class="botao botao-acessorio passar botao-roupa alterar" id="botao-roupa-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-roupa alterar" id="botao-roupa-voltar-player1"></button>
 
                 </div>
 
@@ -198,12 +195,13 @@
                         <!--Imagens das caras player 2-->
                         <img src="imgs/cara-feliz.png" class="cara cara-feliz acessorio" data-set="feliz"
                             data-player="2">
-                        <img src="imgs/cara-bravo.png" class="cara cara-bravo acessorio" data-set="bravo"
+                        <img src="imgs/cara-neutro.png" class="cara cara-neutro acessorio" data-set="neutro"
                             data-player="2">
                         <img src="imgs/cara-surpreso.png" class="cara cara-surpreso acessorio" data-set="surpreso"
                             data-player="2">
-                        <img src="imgs/cara-neutro.png" class="cara cara-neutro acessorio" data-set="neutro"
+                        <img src="imgs/cara-bravo.png" class="cara cara-bravo acessorio" data-set="bravo"
                             data-player="2">
+                        
 
 
                         <!--Imagens dos chapéus player 2-->
@@ -219,11 +217,11 @@
                         <!--Imagens das roupas player 2-->
                         <img src="imgs/roupa-mago.png" class="roupa roupa-mago acessorio" data-set="mago"
                             data-player="2">
-                        <img src="imgs/roupa-rei.png" class="roupa roupa-rei acessorio" data-set="rei" data-player="2">
                         <img src="imgs/roupa-paleto.png" class="roupa roupa-paleto acessorio" data-set="paleto"
                             data-player="2">
                         <img src="imgs/roupa-cowboy.png" class="roupa roupa-cowboy acessorio" data-set="cowboy"
                             data-player="2">
+                        <img src="imgs/roupa-rei.png" class="roupa roupa-rei acessorio" data-set="rei" data-player="2">
 
                         <!--Imagens das armas player 2-->
                         <img src="imgs/arma-luva.png" class="arma arma-luva acessorio" data-set="luva" data-player="2">
@@ -238,16 +236,16 @@
 
 
                     <!--botões de mudar chapéu player 2-->
-                    <button class="botao botao-acessorio passar botao-chapeu" id="botao-chapeu-passar-player2"></button>
-                    <button class="botao botao-acessorio voltar botao-chapeu" id="botao-chapeu-voltar-player2"></button>
+                    <button class="botao botao-acessorio passar botao-chapeu alterar" id="botao-chapeu-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-chapeu alterar" id="botao-chapeu-voltar-player2"></button>
 
                     <!--Botões de mudar cara player 2-->
-                    <button class="botao botao-acessorio passar botao-cara" id="botao-cara-passar-player2"></button>
-                    <button class="botao botao-acessorio voltar botao-cara" id="botao-cara-voltar-player2"></button>
+                    <button class="botao botao-acessorio passar botao-cara alterar" id="botao-cara-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-cara alterar" id="botao-cara-voltar-player2"></button>
 
                     <!--Botões de mudar roupa player 2-->
-                    <button class="botao botao-acessorio passar botao-roupa" id="botao-roupa-passar-player2"></button>
-                    <button class="botao botao-acessorio voltar botao-roupa" id="botao-roupa-voltar-player2"></button>
+                    <button class="botao botao-acessorio passar botao-roupa alterar" id="botao-roupa-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-roupa alterar" id="botao-roupa-voltar-player2"></button>
 
                 </div>
 
@@ -263,7 +261,7 @@
                 </div>
 
                 <!--Botão Fight!-->
-                <button id="botao-fight" class="botao"></button>
+                <button id="botao-fight" class="botao opcao"></button>
             </div>
 
             <!--Aba de seleção das armas-->
@@ -276,8 +274,8 @@
                     <h2>Player 1</h2>
 
                     <!--Botões de mudar arma player 1-->
-                    <button class="botao botao-acessorio passar botao-arma" id="botao-arma-passar-player1"></button>
-                    <button class="botao botao-acessorio voltar botao-arma" id="botao-arma-voltar-player1"></button>
+                    <button class="botao botao-acessorio passar botao-arma alterar" id="botao-arma-passar-player1"></button>
+                    <button class="botao botao-acessorio voltar botao-arma alterar" id="botao-arma-voltar-player1"></button>
 
                 </div>
 
@@ -286,11 +284,11 @@
                     <h2>Player 2</h2>
 
                     <!--Botões de mudar arma player 2-->
-                    <button class="botao botao-acessorio passar botao-arma" id="botao-arma-passar-player2"></button>
-                    <button class="botao botao-acessorio voltar botao-arma" id="botao-arma-voltar-player2"></button>
+                    <button class="botao botao-acessorio passar botao-arma alterar" id="botao-arma-passar-player2"></button>
+                    <button class="botao botao-acessorio voltar botao-arma alterar" id="botao-arma-voltar-player2"></button>
                 </div>
 
-                <button class="botao" id="botao-pronto"></button>
+                <button class="botao opcao" id="botao-pronto"></button>
 
             </div>
 

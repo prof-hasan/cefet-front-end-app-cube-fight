@@ -70,7 +70,12 @@ h1{
 
 h2 {
     margin: 0 0;
-    font-family: sans-serif;
+    font-family: "Jersey 10";
+    font-size: 35px;
+    position: fixed;
+    z-index: 100;
+    color: greenyellow;
+    text-shadow: 2px 2px 2px black;
 }
 
 #player-vencedor {
@@ -210,8 +215,12 @@ h2 {
     height: 10%;
 }
 
-.botaoDestacado {
+.opcao:hover {
     transform: scale(1.2);
+}
+
+.opcao:active {
+    transform: scale(0.75);
 }
 
 #legenda-rejogar, #legenda-voltar-menu{

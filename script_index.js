@@ -11,14 +11,16 @@ let botoesRoupaEl = document.querySelectorAll(".botao-roupa"); //Guarda todos os
 let botoesCaraEl = document.querySelectorAll(".botao-cara"); //Guarda todos os botões de cara (player 1 e 2)
 let botoesArmaEl = document.querySelectorAll(".botao-arma"); //Guarda todos os botões de arma (player 1 e 2)
 
+let botaoOpcaoEl = document.querySelectorAll(".opcao");
+let botaoAlterarEl = document.querySelectorAll(".alterar");
 let botaoFightEl = document.querySelector("#botao-fight"); //Guarda o botão de jogar
 let botaoFecharEl = document.querySelector("#botao-fechar"); //Guarda o botão de fechar coisas
 let botaoProntoEl = document.querySelector("#botao-pronto"); // Guarda o botão pronto
 let botaoJogarEl = document.querySelector("#botao-jogar"); //Guarda o botão de jogar
 let botaoControlesEl = document.querySelector("#botao-controles"); //Guarda o botão de acessar os controles
 let botaoRankingEl = document.querySelector("#botao-ranking");
-let botaoFecharRankingEl = document.querySelector("#botao-fechar-ranking");
 let botaoMenuPrincipalVoltarEl = document.querySelector("#botao-menu-principal-voltar");//Guarda o botão de voltar para o menu principal
+let botaoBiohazardEl = document.querySelector("#botao-biohazard");
 let botaoControlesPlayerEl = document.querySelectorAll(".botao-controles-player");//Guarda os botões de seleção de player na troca de teclas
 let botaoOpcoesControlesAtaqueEl = document.querySelector("#botao-controles-ataque"); //Guarda o botão de acessar a mudança de teclas de ataque
 let botaoOpcoesControlesMovimentoEl = document.querySelector("#botao-controles-movimento"); //Guarda o botão de acessar a mudança de teclas de movimento
@@ -43,9 +45,18 @@ let containerControlesInformarTeclaEl = document.querySelector("#controles-infor
 
 let imagensAcessorios = document.querySelectorAll(".acessorio"); //Guarda todas as imagens de acessórios tanto player 1 e 2
 
-// mapa pra pegar o objeto e nao a string
+const somOpcaoHooverEl = new Audio("efeitos_sonoros/hoover-opcao.wav"); somOpcaoHooverEl.preload = "auto";
+const somOpcaoAtivaEl = new Audio("efeitos_sonoros/selecao-som.mp3"); somOpcaoAtivaEl.preload = "auto";
+const somDesselecaoEl = new Audio("efeitos_sonoros/desselecao-som.wav"); somDesselecaoEl.preload = "auto";
+const somAlterarAcessorio = new Audio("efeitos_sonoros/somMudarRoupa.wav"); somAlterarAcessorio.preload = "auto";
+const somReadyEl = new Audio("efeitos_sonoros/somReady.wav"); somReadyEl.preload = "auto";
+const somVoltarEl = new Audio("efeitos_sonoros/somVoltar.ogg"); somVoltarEl.preload = "auto";
 
-let teclasPlayer1 = { //guarda teclas do player 1
+
+let teclasPlayer1 = JSON.parse(localStorage.getItem("teclasPlayer1"));
+let teclasPlayer2 = JSON.parse(localStorage.getItem("teclasPlayer2"));
+
+if(teclasPlayer1 == null) teclasPlayer1 = { //guarda teclas do player 1
     cima: 'KeyW',
     baixo: 'KeyS',
     direita: 'KeyD',
@@ -55,7 +66,7 @@ let teclasPlayer1 = { //guarda teclas do player 1
     arremesso: 'KeyJ',
 };
 
-let teclasPlayer2 = { //guarda teclas do player 2
+if(teclasPlayer2 == null) teclasPlayer2 = { //guarda teclas do player 2
     cima: 'ArrowUp',
     baixo: 'ArrowDown',
     direita: 'ArrowRight',
@@ -264,7 +275,7 @@ function mudarCara(event) { //Função para mudar a cara
         */
 
         carasEl[posicaoAtualDaCaraPlayer1].classList.add("habilitar");
-         //colocar o acessório da posição atual no jogador
+        //colocar o acessório da posição atual no jogador
     }
 
     if (botaoClicadoeElEl.id == "botao-cara-passar-player2") {//Verifica qual foi o botão clicado
@@ -544,8 +555,10 @@ function apareceRanking() {
     containerRankingEl.style.display = "block";
 }
 
-function fecharRanking() {
-    containerRankingEl.style.display = "none";
+function carregarBiohazard() {
+    setTimeout(() => {
+        window.location.href = "itens_opcionais.html";
+    }, 400);
 }
 
 function apareceSelecaoDeAcessorios() {
@@ -553,10 +566,16 @@ function apareceSelecaoDeAcessorios() {
 }
 
 function voltarParaOMenuPrincipal() {
+    somVoltarEl.currentTime = 0;
+    somVoltarEl.play();
+
     containerMenuPrincipalEl.style.display = "grid"; //Habilita o menu principal
 }
 
 function FecharAba() { //Função de fechar abas
+    somDesselecaoEl.currentTime = 0;
+    somDesselecaoEl.play();
+
     let abasAbertasPossiveis = document.querySelectorAll(".aba");
 
     let abaAberta;
@@ -568,7 +587,8 @@ function FecharAba() { //Função de fechar abas
 
     abaAberta.classList.add("desabilitado"); //desabilita a aba
 
-    if (abaAberta.id == "controles-opcoes" || abaAberta.id == "controles-alterar-ataque" || abaAberta.id == "controles-alterar-movimento" || abaAberta.id == "controles-informar-tecla") { //Se for alguma dessas o botão de fechar continua
+    if (abaAberta.id == "controles-opcoes" || abaAberta.id == "controles-alterar-ataque" || abaAberta.id == "controles-alterar-movimento"
+        || abaAberta.id == "controles-informar-tecla") { //Se for alguma dessas o botão de fechar continua
         return;
     }
 
@@ -592,7 +612,7 @@ function FecharAba() { //Função de fechar abas
 
 function comecarJogo() { //função pra começar o jogo
     //guarda e informa a seleção do jogador pro jogo
-    
+
     const selecaoJogador1 = { //Cria objeto do jogador
         chapeu: chapeusEl[posicaoAtualDoChapeuPlayer1]?.dataset?.set,
         rosto: carasEl[posicaoAtualDaCaraPlayer1]?.dataset?.set,
@@ -649,8 +669,9 @@ function comecarJogo() { //função pra começar o jogo
 
     localStorage.setItem("teclasPlayer2", JSON.stringify(teclasPlayer2)); // Manda as informações pro jogo
 
-    window.location.href = "./menu_mapa.html";
-
+    setTimeout(() => {
+        window.location.href = "./menu_mapa.html";
+    }, 1000);
 }
 
 let pVantagensArmaEl = document.querySelector("#boosts-vantagens-arma");
@@ -667,7 +688,7 @@ function apareceBoostAcessorios(event) { //FUNÇÃO PARA APARECER AS VANTAGENS D
     if (imagemAtualEl.classList.contains("chapeu")) {
         pVantagensAcessorioEl.classList.remove("desabilitado");
 
-        switch(acessorioSelecionado) {
+        switch (acessorioSelecionado) {
             case 'rei': {
                 h2NomeDoAcessorioEl.textContent = "Coroa";
                 pVantagensAcessorioEl.textContent = "Empurrão: +10";
@@ -697,7 +718,7 @@ function apareceBoostAcessorios(event) { //FUNÇÃO PARA APARECER AS VANTAGENS D
     if (imagemAtualEl.classList.contains("roupa")) {
         pVantagensAcessorioEl.classList.remove("desabilitado");
 
-        switch(acessorioSelecionado) {
+        switch (acessorioSelecionado) {
             case 'rei': {
                 h2NomeDoAcessorioEl.textContent = "Manto real";
                 pVantagensAcessorioEl.textContent = "Dano: +10%";
@@ -722,7 +743,7 @@ function apareceBoostAcessorios(event) { //FUNÇÃO PARA APARECER AS VANTAGENS D
                 break;
             }
         }
-        
+
     }
 
     if (imagemAtualEl.classList.contains("arma")) {
@@ -734,8 +755,8 @@ function apareceBoostAcessorios(event) { //FUNÇÃO PARA APARECER AS VANTAGENS D
         let spanAlcanceDaArmaEl = document.querySelector("#alcance-da-arma");
 
         containerBoostsEl.style.height = "50%";
-        
-        switch(acessorioSelecionado) {
+
+        switch (acessorioSelecionado) {
             case 'espada': {
                 h2NomeDoAcessorioEl.textContent = "Espada";
                 spanAlcanceDaArmaEl.textContent = "75";
@@ -772,13 +793,13 @@ function apareceBoostAcessorios(event) { //FUNÇÃO PARA APARECER AS VANTAGENS D
                 break;
             }
         }
-        
+
     }
 
     if (imagemAtualEl.classList.contains("cara")) {
         pVantagensAcessorioEl.classList.remove("desabilitado");
 
-        switch(acessorioSelecionado) {
+        switch (acessorioSelecionado) {
             case 'bravo': {
                 h2NomeDoAcessorioEl.textContent = "Cara Bravo";
                 pVantagensAcessorioEl.textContent = "Empurrão: +5";
@@ -860,6 +881,11 @@ function apareceControlesOpcoes(event) { //FUNÇÃO DE FAZER AS OPÇÕES DE CONT
     playerAtual = players[botaoClicadoEl.dataset.teclaplayer];
 }
 
+function apareceRanking() {
+    containerRankingEl.classList.remove("desabilitado");
+    botaoFecharEl.classList.remove("desabilitado");
+}
+
 function apareceContainerDeAlterarTeclaAtaque() {
     containerControlesAlterarTeclaAtaqueEl.classList.remove("desabilitado");
 }
@@ -870,8 +896,11 @@ function apareceContainerDeAlterarTeclaMovimento() {
 
 let botaoPressionadoEl; //Uso pra passar informação do botão selecionado
 function apareceMudancaDeTecla(event) {
+    let teclaPressionadaEl = document.querySelector("#tecla-pressionada");
+
     containerControlesInformarTeclaEl.classList.remove("desabilitado");
     botaoPressionadoEl = event.currentTarget;
+        teclaPressionadaEl.textContent = playerAtual[botaoPressionadoEl.dataset.tecla];
     window.addEventListener('keydown', guardarInformacaoDaTecla);
 }
 
@@ -883,7 +912,7 @@ function guardarInformacaoDaTecla(event) {
     teclaPressionadaEl.textContent = codigoDaTeclaPressionada;
 }
 
-function confirmarMudancaDeTecla() { 
+function confirmarMudancaDeTecla() {
     playerAtual[botaoPressionadoEl.dataset.tecla] = codigoDaTeclaPressionada;
 
     containerControlesInformarTeclaEl.classList.add("desabilitado");
@@ -891,8 +920,60 @@ function confirmarMudancaDeTecla() {
 }
 
 //Adicionar os eventos de clique aos botões
+let botaoReadyJaClicado = 0;
+let botaoBiohazardJaClicado = 0;
+let delaySom = 0;
 
-botoesChapeuEl.forEach((elementoAtual) => elementoAtual.addEventListener('click', mudarChapeu)); 
+botaoOpcaoEl.forEach((botao) => {
+    botao.addEventListener("mouseover", () => {
+        somOpcaoHooverEl.currentTime = 0;
+        somOpcaoHooverEl.play();
+    })
+
+    botao.addEventListener("click", () => {
+        if (botao.id == "botao-pronto") {
+            if (!botaoReadyJaClicado) {
+                delaySom = 0;
+                botaoReadyJaClicado = 1;
+            }
+            else
+                delaySom = 1000;
+
+            setTimeout(() => {
+                somReadyEl.currentTime = 0;
+                somReadyEl.play();
+            }, delaySom);
+        }
+        else { 
+            if(botao.id == "botao-biohazard"){
+                if(!botaoBiohazardJaClicado){
+                    delaySom = 0;
+                    botaoBiohazardJaClicado = 1;
+                }
+                else
+                    delaySom = 1000;
+            }
+            else{
+                delaySom = 0;
+            }
+
+            setTimeout(() => {
+                somOpcaoAtivaEl.currentTime = 0;
+                somOpcaoAtivaEl.play();
+            }, delaySom);
+        }
+    });
+});
+
+botaoAlterarEl.forEach((botao) => {
+    botao.addEventListener("click", () => {
+        somAlterarAcessorio.currentTime = 0;
+        somAlterarAcessorio.play();
+    });
+});
+
+
+botoesChapeuEl.forEach((elementoAtual) => elementoAtual.addEventListener('click', mudarChapeu));
 botoesCaraEl.forEach((elementoAtual) => elementoAtual.addEventListener('click', mudarCara));
 botoesRoupaEl.forEach((elementoAtual) => elementoAtual.addEventListener('click', mudarRoupa));
 botoesArmaEl.forEach((elementoAtual) => elementoAtual.addEventListener('click', mudarArma));
@@ -900,8 +981,8 @@ botoesArmaEl.forEach((elementoAtual) => elementoAtual.addEventListener('click', 
 botaoJogarEl.addEventListener('click', apareceSelecaoDeAcessorios);
 botaoControlesEl.addEventListener('click', apareceSelecaoDosControles);
 botaoRankingEl.addEventListener('click', apareceRanking);
+botaoBiohazardEl.addEventListener('click', carregarBiohazard);
 botaoFightEl.addEventListener('click', apareceSelecaoDeArma);
-botaoFecharRankingEl.addEventListener('click', fecharRanking);
 botaoFecharEl.addEventListener('click', FecharAba);
 botaoProntoEl.addEventListener('click', comecarJogo);
 botaoMenuPrincipalVoltarEl.addEventListener('click', voltarParaOMenuPrincipal);
@@ -987,8 +1068,9 @@ async function atualizarRankingTabela() {
         tr.innerHTML = `
             <td>${jogador.nome}</td>
             <td>${jogador.vitorias}</td>
-            <td>${jogador.danoTotal}</td>
+            <td>${jogador.danoTotal.toFixed(1)}</td>
         `;
+
         tabela.appendChild(tr);
     });
 }
